@@ -1,108 +1,417 @@
-# Employer registry.
-#
-# Two kinds of entry:
-#   1. RESOLVED  - family + tenant keys are known, the collector runs directly.
-#   2. UNRESOLVED - only `careers_url` is known. scripts/discover_ats.py probes the
-#      page on the runner (which has real internet), detects the ATS and rewrites
-#      this file with the resolved keys. Anything it cannot resolve is reported in
-#      the dashboard's source-health panel rather than silently dropped.
-#
-# Verification status is tracked per entry so the dashboard never presents an
-# unverified source as if it were confirmed working.
-
-resolved: []
-# Example of the shape discovery writes back:
-#   - id: almarai
-#     name: Almarai
-#     name_ar: المراعي
-#     family: workday
-#     host: https://almarai.wd3.myworkdayjobs.com
-#     tenant: almarai
-#     site: External
-#     verified: false
-
-# ---------------------------------------------------------------------------
-# Seed list: major Saudi employers relevant to industrial engineering, supply
-# chain, operations, quality and graduate programmes. `careers_url` values are
-# starting points for discovery, NOT verified endpoints.
-# ---------------------------------------------------------------------------
+resolved:
+- id: almarai
+  name: Almarai
+  name_ar: المراعي
+  sector: fmcg
+  family: browser
+  sub: successfactors
+  url: https://career5.successfactors.eu/career?company=AlMaraiP
+  verified: false
+  verify_note: browser-family (verified at run time)
+  last_count: 0
+- id: pif
+  name: Public Investment Fund
+  name_ar: صندوق الاستثمارات العامة
+  sector: finance
+  family: oracle
+  host: https://fa-esgl-saasfaprod1.fa.ocs.oraclecloud.com
+  site_slug: CX_1001
+  site_number: CX_1001
+  verified: true
+  verify_note: ok
+  last_count: 0
+- id: roshn
+  name: ROSHN
+  name_ar: روشن
+  sector: realestate
+  family: oracle
+  host: https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com
+  site_slug: CX_1
+  site_number: CX_1
+  verified: false
+  verify_note: 'RuntimeError: request failed after 2 attempts: GET https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions
+    -> HTTPError: 403 Client Error: Forbidden for url: https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList.secondaryLocations&finder=findReqs%3BsiteNumber%3DCX_1%2Climit%3D25%2Coffset%3D0%2CsortBy%3DPOSTING_DATES_DESC'
+  last_count: 0
 discover:
-  # --- Energy, petrochemicals, mining -------------------------------------
-  - {id: aramco,        name: Saudi Aramco,            name_ar: أرامكو السعودية,        careers_url: "https://www.aramco.com/en/careers/apply", sector: energy}
-  - {id: sabic,         name: SABIC,                   name_ar: سابك,                   careers_url: "https://jobs.sabic.com/search/", sector: petrochemical}
-  - {id: maaden,        name: Ma'aden,                 name_ar: معادن,                  careers_url: "https://careers.maaden.com.sa", sector: mining}
-  - {id: sipchem,       name: Sipchem,                 name_ar: سبكيم,                  careers_url: "https://www.sipchem.com/careers/", sector: petrochemical}
-  - {id: tasnee,        name: Tasnee,                  name_ar: التصنيع,                careers_url: "https://www.tasnee.com/en/careers", sector: petrochemical}
-  - {id: advanced,      name: Advanced Petrochemical,  name_ar: المتقدمة للبتروكيماويات, careers_url: "https://www.apc.com.sa/careers", sector: petrochemical}
-  - {id: yansab,        name: Yansab,                  name_ar: ينساب,                  careers_url: "https://www.yansab.com.sa/en/careers", sector: petrochemical}
-  - {id: petrorabigh,   name: Petro Rabigh,            name_ar: بترورابغ,               careers_url: "https://www.petrorabigh.com/en/careers", sector: petrochemical}
-  - {id: acwapower,     name: ACWA Power,              name_ar: أكوا باور,              careers_url: "https://acwapower.com/en/careers/", sector: energy}
-  - {id: sec,           name: Saudi Electricity Co,    name_ar: السعودية للكهرباء,      careers_url: "https://www.se.com.sa/en-us/Careers", sector: utilities}
-
-  # --- Giga-projects and PIF portfolio ------------------------------------
-  - {id: neom,          name: NEOM,                    name_ar: نيوم,                   careers_url: "https://www.neom.com/en-us/careers", sector: giga}
-  - {id: redseaglobal,  name: Red Sea Global,          name_ar: البحر الأحمر العالمية,  careers_url: "https://www.redseaglobal.com/en/careers", sector: giga}
-  - {id: qiddiya,       name: Qiddiya,                 name_ar: القدية,                 careers_url: "https://qiddiya.com/careers/", sector: giga}
-  - {id: diriyah,       name: Diriyah Company,         name_ar: الدرعية,                careers_url: "https://www.diriyah.sa/en/careers", sector: giga}
-  - {id: roshn,         name: ROSHN,                   name_ar: روشن,                   careers_url: "https://www.roshn.sa/en/careers", sector: realestate}
-  - {id: pif,           name: Public Investment Fund,  name_ar: صندوق الاستثمارات العامة, careers_url: "https://www.pif.gov.sa/en/careers/", sector: finance}
-  - {id: lucid,         name: Lucid Motors KSA,        name_ar: لوسيد,                  careers_url: "https://lucidmotors.com/careers", sector: automotive}
-  - {id: ceer,          name: Ceer Motors,             name_ar: سير,                    careers_url: "https://www.ceer.com.sa/careers", sector: automotive}
-
-  # --- FMCG, food, pharma, medical ----------------------------------------
-  - {id: almarai,       name: Almarai,                 name_ar: المراعي,                careers_url: "https://www.almarai.com/en/careers/", sector: fmcg}
-  - {id: nadec,         name: NADEC,                   name_ar: نادك,                   careers_url: "https://www.nadec.com.sa/en/careers", sector: fmcg}
-  - {id: sadafco,       name: SADAFCO,                 name_ar: سدافكو,                 careers_url: "https://www.sadafco.com/careers/", sector: fmcg}
-  - {id: savola,        name: Savola Group,            name_ar: صافولا,                 careers_url: "https://www.savola.com/en/careers", sector: fmcg}
-  - {id: halwani,       name: Halwani Bros,            name_ar: حلواني إخوان,           careers_url: "https://www.halwanibros.com/careers", sector: fmcg}
-  - {id: spimaco,       name: SPIMACO,                 name_ar: سبيماكو,                careers_url: "https://www.spimaco.com.sa/careers", sector: pharma}
-  - {id: nupco,         name: NUPCO,                   name_ar: نوبكو,                  careers_url: "https://www.nupco.com/careers", sector: healthcare_supply}
-  - {id: tamer,         name: Tamer Group,             name_ar: مجموعة تامر,            careers_url: "https://www.tamergroup.com/careers", sector: healthcare_supply}
-
-  # --- Logistics, transport, ports ----------------------------------------
-  - {id: bahri,         name: Bahri,                   name_ar: البحري,                 careers_url: "https://www.bahri.sa/careers/", sector: logistics}
-  - {id: aramex_sa,     name: Aramex Saudi,            name_ar: أرامكس,                 careers_url: "https://www.aramex.com/careers", sector: logistics}
-  - {id: smsa,          name: SMSA Express,            name_ar: سمسا,                   careers_url: "https://www.smsaexpress.com/careers", sector: logistics}
-  - {id: naqel,         name: Naqel Express,           name_ar: ناقل,                   careers_url: "https://www.naqelexpress.com/careers", sector: logistics}
-  - {id: sar,           name: Saudi Arabia Railways,   name_ar: الخطوط الحديدية,        careers_url: "https://www.sar.com.sa/en/careers", sector: transport}
-  - {id: mawani,        name: Mawani,                  name_ar: موانئ,                  careers_url: "https://mawani.gov.sa/en/Careers", sector: ports}
-  - {id: saudia,        name: Saudia Group,            name_ar: السعودية,               careers_url: "https://www.saudia.com/careers", sector: aviation}
-  - {id: flynas,        name: flynas,                  name_ar: طيران ناس,              careers_url: "https://www.flynas.com/en/careers", sector: aviation}
-  - {id: flyadeal,      name: flyadeal,                name_ar: طيران أديل,             careers_url: "https://www.flyadeal.com/en/careers/", sector: aviation}
-
-  # --- Retail and distribution --------------------------------------------
-  - {id: panda,         name: Panda Retail,            name_ar: بنده,                   careers_url: "https://www.panda.com.sa/careers", sector: retail}
-  - {id: othaim,        name: Abdullah Al Othaim,      name_ar: العثيم,                 careers_url: "https://www.othaimmarkets.com/careers", sector: retail}
-  - {id: bindawood,     name: BinDawood Holding,       name_ar: بن داود,                careers_url: "https://www.bindawoodholding.com/careers", sector: retail}
-  - {id: jarir,         name: Jarir Bookstore,         name_ar: جرير,                   careers_url: "https://www.jarir.com/careers", sector: retail}
-  - {id: extra,         name: eXtra,                   name_ar: إكسترا,                 careers_url: "https://www.extra.com/en-sa/careers", sector: retail}
-  - {id: alsaif,        name: Alsaif Gallery,          name_ar: السيف غاليري,           careers_url: "https://alsaifgallery.com/careers", sector: retail}
-
-  # --- Industrials, construction, contracting -----------------------------
-  - {id: alfanar,       name: Alfanar,                 name_ar: الفنار,                 careers_url: "https://www.alfanar.com/careers/", sector: industrial}
-  - {id: zamil,         name: Zamil Industrial,        name_ar: الزامل للصناعة,         careers_url: "https://www.zamilindustrial.com/careers", sector: industrial}
-  - {id: alyamama,      name: Al Yamama Group,         name_ar: اليمامة,                careers_url: "https://alyamamah.com/careers", sector: construction}
-  - {id: nesma,         name: Nesma Group,             name_ar: نسما,                   careers_url: "https://www.nesma.com/careers", sector: construction}
-  - {id: albawani,      name: Albawani,                name_ar: البواني,                careers_url: "https://albawani.net/careers", sector: construction}
-  - {id: sabtco,        name: Saudi Ceramics,          name_ar: الخزف السعودي,          careers_url: "https://www.saudiceramics.com/careers", sector: industrial}
-  - {id: obeikan,       name: Obeikan Investment,      name_ar: العبيكان,               careers_url: "https://www.obeikaninvestment.com/careers", sector: industrial}
-  - {id: napco,         name: Napco National,          name_ar: نابكو,                  careers_url: "https://www.napconational.com/careers", sector: industrial}
-
-  # --- Telecom, banking, tech ---------------------------------------------
-  - {id: stc,           name: stc,                     name_ar: إس تي سي,               careers_url: "https://www.stc.com.sa/content/stc/sa/en/personal/about-stc/careers.html", sector: telecom}
-  - {id: mobily,        name: Mobily,                  name_ar: موبايلي,                careers_url: "https://www.mobily.com.sa/en/careers", sector: telecom}
-  - {id: zain_sa,       name: Zain KSA,                name_ar: زين السعودية,           careers_url: "https://www.sa.zain.com/en/careers", sector: telecom}
-  - {id: alrajhi,       name: Al Rajhi Bank,           name_ar: مصرف الراجحي,           careers_url: "https://www.alrajhibank.com.sa/en/careers", sector: banking}
-  - {id: snb,           name: Saudi National Bank,     name_ar: البنك الأهلي السعودي,   careers_url: "https://www.alahli.com/en-us/about-us/Pages/careers.aspx", sector: banking}
-  - {id: elm,           name: Elm Company,             name_ar: علم,                    careers_url: "https://elm.sa/en/careers", sector: tech}
-  - {id: tahakom,       name: Tahakom,                 name_ar: تحكم,                   careers_url: "https://tahakom.com/careers", sector: tech}
-
-  # --- Healthcare operators (ops / supply chain roles) --------------------
-  - {id: kfshrc,        name: KFSHRC,                  name_ar: مستشفى الملك فيصل التخصصي, careers_url: "https://www.kfshrc.edu.sa/en/home/careers", sector: healthcare}
-  - {id: dr_sulaiman,   name: Dr. Sulaiman Al Habib,   name_ar: د. سليمان الحبيب,       careers_url: "https://hmg.com/en/careers", sector: healthcare}
-  - {id: mouwasat,      name: Mouwasat Medical,        name_ar: المواساة,               careers_url: "https://www.mouwasat.com/careers", sector: healthcare}
-
-  # --- Jazan / southern region specific -----------------------------------
-  - {id: sasref,        name: SASREF (Aramco Jazan),   name_ar: ساسرف,                  careers_url: "https://www.sasref.com.sa/careers", sector: energy}
-  - {id: jazan_city,    name: Jazan City for Primary and Downstream Industries, name_ar: مدينة جازان للصناعات الأساسية, careers_url: "https://www.rcjy.gov.sa/en/careers", sector: industrial}
-  - {id: modon,         name: MODON,                   name_ar: مدن,                    careers_url: "https://modon.gov.sa/en/careers", sector: government}
+- id: aramco
+  name: Saudi Aramco
+  name_ar: أرامكو السعودية
+  careers_url: https://www.aramco.com/en/careers/apply
+  sector: energy
+  last_error: 'ReadTimeout: HTTPSConnectionPool(host=''www.aramco.com'', port=443):
+    Read timed out. (read timeout=30)'
+- id: sabic
+  name: SABIC
+  name_ar: سابك
+  careers_url: https://jobs.sabic.com/search/
+  sector: petrochemical
+  last_error: no known ATS fingerprint on careers page
+- id: maaden
+  name: Ma'aden
+  name_ar: معادن
+  careers_url: https://careers.maaden.com.sa
+  sector: mining
+  last_error: 'ConnectionError: HTTPSConnectionPool(host=''careers.maaden.com.sa'',
+    port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host=''careers.maaden.com.sa'',
+    p'
+- id: sipchem
+  name: Sipchem
+  name_ar: سبكيم
+  careers_url: https://www.sipchem.com/careers/
+  sector: petrochemical
+  last_error: no known ATS fingerprint on careers page
+- id: tasnee
+  name: Tasnee
+  name_ar: التصنيع
+  careers_url: https://www.tasnee.com/en/careers
+  sector: petrochemical
+  last_error: 'SSLError: HTTPSConnectionPool(host=''www.tasnee.com'', port=443): Max
+    retries exceeded with url: /en/careers (Caused by SSLError(SSLCertVerificationError(1,
+    ''[SSL: CERTIFICATE_VERIFY_FAILED] c'
+- id: advanced
+  name: Advanced Petrochemical
+  name_ar: المتقدمة للبتروكيماويات
+  careers_url: https://www.apc.com.sa/careers
+  sector: petrochemical
+  last_error: no known ATS fingerprint on careers page
+- id: yansab
+  name: Yansab
+  name_ar: ينساب
+  careers_url: https://www.yansab.com.sa/en/careers
+  sector: petrochemical
+  last_error: no known ATS fingerprint on careers page
+- id: petrorabigh
+  name: Petro Rabigh
+  name_ar: بترورابغ
+  careers_url: https://www.petrorabigh.com/en/careers
+  sector: petrochemical
+  last_error: no known ATS fingerprint on careers page
+- id: acwapower
+  name: ACWA Power
+  name_ar: أكوا باور
+  careers_url: https://acwapower.com/en/careers/
+  sector: energy
+  last_error: no known ATS fingerprint on careers page
+- id: sec
+  name: Saudi Electricity Co
+  name_ar: السعودية للكهرباء
+  careers_url: https://www.se.com.sa/en-us/Careers
+  sector: utilities
+  last_error: no known ATS fingerprint on careers page
+- id: neom
+  name: NEOM
+  name_ar: نيوم
+  careers_url: https://www.neom.com/en-us/careers
+  sector: giga
+  last_error: no known ATS fingerprint on careers page
+- id: redseaglobal
+  name: Red Sea Global
+  name_ar: البحر الأحمر العالمية
+  careers_url: https://www.redseaglobal.com/en/careers
+  sector: giga
+  last_error: no known ATS fingerprint on careers page
+- id: qiddiya
+  name: Qiddiya
+  name_ar: القدية
+  careers_url: https://qiddiya.com/careers/
+  sector: giga
+  last_error: no known ATS fingerprint on careers page
+- id: diriyah
+  name: Diriyah Company
+  name_ar: الدرعية
+  careers_url: https://www.diriyah.sa/en/careers
+  sector: giga
+  last_error: no known ATS fingerprint on careers page
+- id: lucid
+  name: Lucid Motors KSA
+  name_ar: لوسيد
+  careers_url: https://lucidmotors.com/careers
+  sector: automotive
+  last_error: no known ATS fingerprint on careers page
+- id: ceer
+  name: Ceer Motors
+  name_ar: سير
+  careers_url: https://www.ceer.com.sa/careers
+  sector: automotive
+  last_error: 'ConnectionError: HTTPSConnectionPool(host=''www.ceer.com.sa'', port=443):
+    Max retries exceeded with url: /careers (Caused by NameResolutionError("HTTPSConnection(host=''www.ceer.com.sa'',
+    port=4'
+- id: nadec
+  name: NADEC
+  name_ar: نادك
+  careers_url: https://www.nadec.com.sa/en/careers
+  sector: fmcg
+  last_error: 'SSLError: HTTPSConnectionPool(host=''www.nadec.com.sa'', port=443):
+    Max retries exceeded with url: /en/careers (Caused by SSLError(SSLCertVerificationError(1,
+    "[SSL: CERTIFICATE_VERIFY_FAILED]'
+- id: sadafco
+  name: SADAFCO
+  name_ar: سدافكو
+  careers_url: https://www.sadafco.com/careers/
+  sector: fmcg
+  last_error: no known ATS fingerprint on careers page
+- id: savola
+  name: Savola Group
+  name_ar: صافولا
+  careers_url: https://www.savola.com/en/careers
+  sector: fmcg
+  last_error: no known ATS fingerprint on careers page
+- id: halwani
+  name: Halwani Bros
+  name_ar: حلواني إخوان
+  careers_url: https://www.halwanibros.com/careers
+  sector: fmcg
+  last_error: no known ATS fingerprint on careers page
+- id: spimaco
+  name: SPIMACO
+  name_ar: سبيماكو
+  careers_url: https://www.spimaco.com.sa/careers
+  sector: pharma
+  last_error: 'SSLError: HTTPSConnectionPool(host=''www.spimaco.com.sa'', port=443):
+    Max retries exceeded with url: /careers (Caused by SSLError(SSLCertVerificationError(1,
+    ''[SSL: CERTIFICATE_VERIFY_FAILED] '
+- id: nupco
+  name: NUPCO
+  name_ar: نوبكو
+  careers_url: https://www.nupco.com/careers
+  sector: healthcare_supply
+  last_error: no known ATS fingerprint on careers page
+- id: tamer
+  name: Tamer Group
+  name_ar: مجموعة تامر
+  careers_url: https://www.tamergroup.com/careers
+  sector: healthcare_supply
+  last_error: no known ATS fingerprint on careers page
+- id: bahri
+  name: Bahri
+  name_ar: البحري
+  careers_url: https://www.bahri.sa/careers/
+  sector: logistics
+  last_error: no known ATS fingerprint on careers page
+- id: aramex_sa
+  name: Aramex Saudi
+  name_ar: أرامكس
+  careers_url: https://www.aramex.com/careers
+  sector: logistics
+  last_error: no known ATS fingerprint on careers page
+- id: smsa
+  name: SMSA Express
+  name_ar: سمسا
+  careers_url: https://www.smsaexpress.com/careers
+  sector: logistics
+  last_error: 'SSLError: HTTPSConnectionPool(host=''www.smsaexpress.com'', port=443):
+    Max retries exceeded with url: /careers (Caused by SSLError(SSLCertVerificationError(1,
+    ''[SSL: CERTIFICATE_VERIFY_FAILED]'
+- id: naqel
+  name: Naqel Express
+  name_ar: ناقل
+  careers_url: https://www.naqelexpress.com/careers
+  sector: logistics
+  last_error: no known ATS fingerprint on careers page
+- id: sar
+  name: Saudi Arabia Railways
+  name_ar: الخطوط الحديدية
+  careers_url: https://www.sar.com.sa/en/careers
+  sector: transport
+  last_error: no known ATS fingerprint on careers page
+- id: mawani
+  name: Mawani
+  name_ar: موانئ
+  careers_url: https://mawani.gov.sa/en/Careers
+  sector: ports
+  last_error: no known ATS fingerprint on careers page
+- id: saudia
+  name: Saudia Group
+  name_ar: السعودية
+  careers_url: https://www.saudia.com/careers
+  sector: aviation
+  last_error: no known ATS fingerprint on careers page
+- id: flynas
+  name: flynas
+  name_ar: طيران ناس
+  careers_url: https://www.flynas.com/en/careers
+  sector: aviation
+  last_error: no known ATS fingerprint on careers page
+- id: flyadeal
+  name: flyadeal
+  name_ar: طيران أديل
+  careers_url: https://www.flyadeal.com/en/careers/
+  sector: aviation
+  last_error: no known ATS fingerprint on careers page
+- id: panda
+  name: Panda Retail
+  name_ar: بنده
+  careers_url: https://www.panda.com.sa/careers
+  sector: retail
+  last_error: no known ATS fingerprint on careers page
+- id: othaim
+  name: Abdullah Al Othaim
+  name_ar: العثيم
+  careers_url: https://www.othaimmarkets.com/careers
+  sector: retail
+  last_error: no known ATS fingerprint on careers page
+- id: bindawood
+  name: BinDawood Holding
+  name_ar: بن داود
+  careers_url: https://www.bindawoodholding.com/careers
+  sector: retail
+  last_error: no known ATS fingerprint on careers page
+- id: jarir
+  name: Jarir Bookstore
+  name_ar: جرير
+  careers_url: https://www.jarir.com/careers
+  sector: retail
+  last_error: no known ATS fingerprint on careers page
+- id: extra
+  name: eXtra
+  name_ar: إكسترا
+  careers_url: https://www.extra.com/en-sa/careers
+  sector: retail
+  last_error: no known ATS fingerprint on careers page
+- id: alsaif
+  name: Alsaif Gallery
+  name_ar: السيف غاليري
+  careers_url: https://alsaifgallery.com/careers
+  sector: retail
+  last_error: no known ATS fingerprint on careers page
+- id: alfanar
+  name: Alfanar
+  name_ar: الفنار
+  careers_url: https://www.alfanar.com/careers/
+  sector: industrial
+  last_error: no known ATS fingerprint on careers page
+- id: zamil
+  name: Zamil Industrial
+  name_ar: الزامل للصناعة
+  careers_url: https://www.zamilindustrial.com/careers
+  sector: industrial
+  last_error: no known ATS fingerprint on careers page
+- id: alyamama
+  name: Al Yamama Group
+  name_ar: اليمامة
+  careers_url: https://alyamamah.com/careers
+  sector: construction
+  last_error: 'ConnectionError: HTTPSConnectionPool(host=''alyamamah.com'', port=443):
+    Max retries exceeded with url: /careers (Caused by NewConnectionError("HTTPSConnection(host=''alyamamah.com'',
+    port=443): '
+- id: nesma
+  name: Nesma Group
+  name_ar: نسما
+  careers_url: https://www.nesma.com/careers
+  sector: construction
+  last_error: no known ATS fingerprint on careers page
+- id: albawani
+  name: Albawani
+  name_ar: البواني
+  careers_url: https://albawani.net/careers
+  sector: construction
+  last_error: no known ATS fingerprint on careers page
+- id: sabtco
+  name: Saudi Ceramics
+  name_ar: الخزف السعودي
+  careers_url: https://www.saudiceramics.com/careers
+  sector: industrial
+  last_error: no known ATS fingerprint on careers page
+- id: obeikan
+  name: Obeikan Investment
+  name_ar: العبيكان
+  careers_url: https://www.obeikaninvestment.com/careers
+  sector: industrial
+  last_error: 'ConnectionError: HTTPSConnectionPool(host=''www.obeikaninvestment.com'',
+    port=443): Max retries exceeded with url: /careers (Caused by NameResolutionError("HTTPSConnection(host=''www.obeikaninv'
+- id: napco
+  name: Napco National
+  name_ar: نابكو
+  careers_url: https://www.napconational.com/careers
+  sector: industrial
+  last_error: 'SSLError: HTTPSConnectionPool(host=''www.napconational.com'', port=443):
+    Max retries exceeded with url: /careers (Caused by SSLError(SSLCertVerificationError(1,
+    ''[SSL: CERTIFICATE_VERIFY_FAILE'
+- id: stc
+  name: stc
+  name_ar: إس تي سي
+  careers_url: https://www.stc.com.sa/content/stc/sa/en/personal/about-stc/careers.html
+  sector: telecom
+  last_error: no known ATS fingerprint on careers page
+- id: mobily
+  name: Mobily
+  name_ar: موبايلي
+  careers_url: https://www.mobily.com.sa/en/careers
+  sector: telecom
+  last_error: no known ATS fingerprint on careers page
+- id: zain_sa
+  name: Zain KSA
+  name_ar: زين السعودية
+  careers_url: https://www.sa.zain.com/en/careers
+  sector: telecom
+  last_error: no known ATS fingerprint on careers page
+- id: alrajhi
+  name: Al Rajhi Bank
+  name_ar: مصرف الراجحي
+  careers_url: https://www.alrajhibank.com.sa/en/careers
+  sector: banking
+  last_error: no known ATS fingerprint on careers page
+- id: snb
+  name: Saudi National Bank
+  name_ar: البنك الأهلي السعودي
+  careers_url: https://www.alahli.com/en-us/about-us/Pages/careers.aspx
+  sector: banking
+  last_error: 'SSLError: HTTPSConnectionPool(host=''www.alahli.com'', port=443): Max
+    retries exceeded with url: /en-us/about-us/Pages/careers.aspx (Caused by SSLError(SSLError(1,
+    ''[SSL: SSLV3_ALERT_HANDSHAKE'
+- id: elm
+  name: Elm Company
+  name_ar: علم
+  careers_url: https://elm.sa/en/careers
+  sector: tech
+  last_error: 'SSLError: HTTPSConnectionPool(host=''elm.sa'', port=443): Max retries
+    exceeded with url: /en/careers (Caused by SSLError(SSLCertVerificationError(1,
+    ''[SSL: CERTIFICATE_VERIFY_FAILED] certifica'
+- id: tahakom
+  name: Tahakom
+  name_ar: تحكم
+  careers_url: https://tahakom.com/careers
+  sector: tech
+  last_error: 'SSLError: HTTPSConnectionPool(host=''tahakom.com'', port=443): Max
+    retries exceeded with url: /careers (Caused by SSLError(SSLCertVerificationError(1,
+    "[SSL: CERTIFICATE_VERIFY_FAILED] certifi'
+- id: kfshrc
+  name: KFSHRC
+  name_ar: مستشفى الملك فيصل التخصصي
+  careers_url: https://www.kfshrc.edu.sa/en/home/careers
+  sector: healthcare
+  last_error: no known ATS fingerprint on careers page
+- id: dr_sulaiman
+  name: Dr. Sulaiman Al Habib
+  name_ar: د. سليمان الحبيب
+  careers_url: https://hmg.com/en/careers
+  sector: healthcare
+  last_error: no known ATS fingerprint on careers page
+- id: mouwasat
+  name: Mouwasat Medical
+  name_ar: المواساة
+  careers_url: https://www.mouwasat.com/careers
+  sector: healthcare
+  last_error: no known ATS fingerprint on careers page
+- id: sasref
+  name: SASREF (Aramco Jazan)
+  name_ar: ساسرف
+  careers_url: https://www.sasref.com.sa/careers
+  sector: energy
+  last_error: no known ATS fingerprint on careers page
+- id: jazan_city
+  name: Jazan City for Primary and Downstream Industries
+  name_ar: مدينة جازان للصناعات الأساسية
+  careers_url: https://www.rcjy.gov.sa/en/careers
+  sector: industrial
+  last_error: 'ConnectionError: HTTPSConnectionPool(host=''www.rcjy.gov.sa'', port=443):
+    Max retries exceeded with url: /en/careers (Caused by NewConnectionError("HTTPSConnection(host=''www.rcjy.gov.sa'',
+    port'
+- id: modon
+  name: MODON
+  name_ar: مدن
+  careers_url: https://modon.gov.sa/en/careers
+  sector: government
+  last_error: 'SSLError: HTTPSConnectionPool(host=''modon.gov.sa'', port=443): Max
+    retries exceeded with url: /en/careers (Caused by SSLError(SSLCertVerificationError(1,
+    ''[SSL: CERTIFICATE_VERIFY_FAILED] cer'
