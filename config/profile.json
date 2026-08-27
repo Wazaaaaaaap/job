@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "source_cv": "Abdulslam_Alfaifi_Industrial_Engineer_CV.pdf",
+    "extracted_on": "2026-08-27",
+    "schema_version": 1
+  },
+  "identity": {
+    "name_en": "Abdulslam Mousa Alfaifi",
+    "name_ar": "عبدالسلام موسى الفيفي",
+    "headline_en": "Industrial Engineer | Supply Chain & Process Improvement",
+    "nationality": "SA"
+  },
+  "_privacy_note": "لا تضع بريدك أو رقمك هنا. المستودع الذي ينشر لوحة GitHub Pages مجانًا يجب أن يكون عامًا، وكل ملف فيه مقروء للجميع. المحرك لا يحتاج بيانات التواصل إطلاقًا.",
+  "education": {
+    "degree": "Bachelor of Industrial Engineering",
+    "field_en": "Industrial Engineering",
+    "field_ar": "الهندسة الصناعية",
+    "institution": "Jazan University",
+    "gpa": 4.67,
+    "gpa_scale": 5.0,
+    "honours": "Second Class Honours",
+    "graduation": "2026-09",
+    "level": "bachelor"
+  },
+  "experience": {
+    "total_months_professional": 3,
+    "seniority_band": "entry",
+    "accepted_seniority": ["intern", "graduate", "entry", "junior", "associate"],
+    "rejected_seniority": ["manager", "senior_manager", "director", "head", "vp", "chief", "principal"],
+    "max_years_required": 3,
+    "roles": [
+      {
+        "title": "Import & Logistics Operations Intern",
+        "employer": "Sentech Medical Company",
+        "start": "2026-06",
+        "end": null,
+        "domains": ["import", "customs", "procurement", "supply_chain", "medical_devices"]
+      }
+    ]
+  },
+  "skills": {
+    "supply_chain": {
+      "weight": 1.0,
+      "terms_en": ["supply chain", "supply chain management", "procurement", "purchasing", "sourcing", "inventory management", "inventory control", "abc analysis", "abc classification", "reorder point", "rop", "safety stock", "demand planning", "forecasting", "erp", "import operations", "customs clearance", "logistics", "warehouse", "warehousing", "materials management", "material handling", "distribution", "3pl", "freight", "shipping", "s&op"],
+      "terms_ar": ["سلسلة الإمداد", "سلاسل الإمداد", "المشتريات", "الشراء", "التوريد", "إدارة المخزون", "المخزون", "التخزين", "المستودعات", "الاستيراد", "التخليص الجمركي", "لوجستيات", "لوجستية", "الخدمات اللوجستية", "تخطيط الطلب", "التنبؤ", "الشحن", "التوزيع", "المناولة"]
+    },
+    "process_improvement": {
+      "weight": 1.0,
+      "terms_en": ["lean", "lean manufacturing", "lean six sigma", "six sigma", "continuous improvement", "kaizen", "value stream mapping", "vsm", "root cause analysis", "rca", "5 why", "waste reduction", "muda", "process improvement", "process optimization", "process engineering", "5s", "smed", "operational excellence", "opex", "time study", "work study", "line balancing", "cycle time", "takt time", "throughput", "capacity planning", "productivity improvement", "industrial engineering", "methods engineering"],
+      "terms_ar": ["اللين", "التحسين المستمر", "كايزن", "ستة سيجما", "سيجما", "تحسين العمليات", "التميز التشغيلي", "خرائط تدفق القيمة", "تحليل جذور الأسباب", "تقليل الهدر", "دراسة الوقت", "هندسة صناعية", "الهندسة الصناعية", "الإنتاجية"]
+    },
+    "quality": {
+      "weight": 0.85,
+      "terms_en": ["quality management", "quality control", "qc", "quality assurance", "qa", "iso 9001", "spc", "statistical process control", "defect reduction", "capa", "fmea", "audit", "gmp", "inspection", "tqm"],
+      "terms_ar": ["الجودة", "إدارة الجودة", "ضبط الجودة", "توكيد الجودة", "أيزو", "التدقيق", "الفحص", "المطابقة"]
+    },
+    "data_analytics": {
+      "weight": 0.9,
+      "terms_en": ["excel", "advanced excel", "power query", "pivot table", "pivottables", "power bi", "dashboard", "kpi", "data analysis", "data analytics", "data visualization", "data cleaning", "reporting", "minitab", "statistical analysis", "statistics", "regression", "sql", "google sheets", "business intelligence", "bi", "python", "vba"],
+      "terms_ar": ["إكسل", "تحليل البيانات", "لوحات المؤشرات", "مؤشرات الأداء", "التقارير", "تصور البيانات", "الإحصاء", "التحليل الإحصائي", "ذكاء الأعمال"]
+    },
+    "simulation_or": {
+      "weight": 0.8,
+      "terms_en": ["simulation", "simulation modeling", "simio", "arena", "flexsim", "anylogic", "discrete event simulation", "operations research", "optimization", "linear programming", "queueing", "modelling", "qm for windows", "facility layout", "plant layout"],
+      "terms_ar": ["المحاكاة", "نمذجة", "بحوث العمليات", "الأمثلية", "البرمجة الخطية", "تخطيط المصانع"]
+    },
+    "project_ops": {
+      "weight": 0.6,
+      "terms_en": ["project management", "project coordination", "planning", "scheduling", "primavera", "ms project", "stakeholder", "documentation", "sop", "business process mapping", "requirements"],
+      "terms_ar": ["إدارة المشاريع", "تنسيق المشاريع", "التخطيط", "الجدولة", "إجراءات التشغيل", "توثيق"]
+    },
+    "domain_exposure": {
+      "weight": 0.4,
+      "terms_en": ["medical devices", "dental", "healthcare", "pharmaceutical", "manufacturing", "production", "plant", "factory", "petrochemical", "fmcg", "retail operations"],
+      "terms_ar": ["الأجهزة الطبية", "الأسنان", "الرعاية الصحية", "الأدوية", "التصنيع", "الإنتاج", "المصنع", "البتروكيماويات", "التجزئة"]
+    }
+  },
+  "tools": ["Excel", "Power Query", "PivotTables", "SIMIO", "Minitab", "QM for Windows", "Google Sheets"],
+  "certifications": [
+    {"name": "McKinsey.org Forward Program", "issuer": "McKinsey & Company", "year": 2026},
+    {"name": "Data Analysis Skills Using Microsoft Excel (30h)", "issuer": "Al-Aqmar Higher Training Institute / TVTC", "year": 2026}
+  ],
+  "languages": {"ar": "native", "en": "professional_working"},
+  "preferences": {
+    "countries": ["SA"],
+    "cities_priority": [
+      {"city_en": "Riyadh", "city_ar": "الرياض", "weight": 1.0},
+      {"city_en": "Jazan", "city_ar": "جازان", "weight": 1.0},
+      {"city_en": "Jizan", "city_ar": "جيزان", "weight": 1.0},
+      {"city_en": "Dammam", "city_ar": "الدمام", "weight": 0.95},
+      {"city_en": "Khobar", "city_ar": "الخبر", "weight": 0.95},
+      {"city_en": "Dhahran", "city_ar": "الظهران", "weight": 0.95},
+      {"city_en": "Jubail", "city_ar": "الجبيل", "weight": 0.9},
+      {"city_en": "Eastern Province", "city_ar": "المنطقة الشرقية", "weight": 0.9},
+      {"city_en": "Remote", "city_ar": "عن بعد", "weight": 0.85},
+      {"city_en": "Jeddah", "city_ar": "جدة", "weight": 0.6},
+      {"city_en": "Abha", "city_ar": "أبها", "weight": 0.6},
+      {"city_en": "Yanbu", "city_ar": "ينبع", "weight": 0.5},
+      {"city_en": "NEOM", "city_ar": "نيوم", "weight": 0.5},
+      {"city_en": "Makkah", "city_ar": "مكة", "weight": 0.4},
+      {"city_en": "Madinah", "city_ar": "المدينة", "weight": 0.4}
+    ],
+    "default_city_weight": 0.35,
+    "scope": "all_fields_matched_by_cv",
+    "focus_families": ["industrial_engineering", "operations", "supply_chain", "logistics", "quality", "data_analysis", "graduate_programs"]
+  },
+  "target_titles": {
+    "en": ["industrial engineer", "process engineer", "manufacturing engineer", "production engineer", "operations engineer", "operations analyst", "supply chain analyst", "supply chain officer", "supply chain specialist", "planning engineer", "demand planner", "supply planner", "procurement specialist", "procurement officer", "buyer", "purchasing officer", "logistics coordinator", "logistics specialist", "warehouse supervisor", "inventory analyst", "inventory controller", "quality engineer", "quality specialist", "continuous improvement engineer", "lean engineer", "business analyst", "data analyst", "graduate engineer", "trainee engineer", "engineer in training", "management trainee", "co-op", "fresh graduate program"],
+    "ar": ["مهندس صناعي", "مهندس عمليات", "مهندس إنتاج", "مهندس تصنيع", "مهندس تخطيط", "مهندس جودة", "أخصائي سلسلة إمداد", "محلل سلسلة إمداد", "أخصائي مشتريات", "منسق لوجستي", "أخصائي لوجستي", "مراقب مخزون", "محلل بيانات", "محلل أعمال", "مهندس تحسين مستمر", "برنامج الخريجين", "متدرب"]
+  },
+  "exclusions": {
+    "hard_reject_titles": ["driver", "nurse", "physician", "dentist", "pharmacist", "teacher", "chef", "security guard", "cleaner", "welder", "electrician", "plumber", "sales representative door", "call center agent"],
+    "hard_reject_titles_ar": ["سائق", "ممرض", "طبيب", "صيدلي", "معلم", "طباخ", "حارس أمن", "عامل نظافة", "لحام", "كهربائي", "سباك"],
+    "require_saudi_eligible": true
+  }
+}

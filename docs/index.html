@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>رادار الشواغر السعودية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Readex+Pro:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#F4F6F4; --surface:#FFFFFF; --surface-2:#EDF0EE;
+  --ink:#141F1D; --ink-2:#42524E; --ink-3:#76867F;
+  --rule:#DCE2DF; --rule-strong:#C3CCC8;
+  --accent:#0E5A53; --accent-soft:#D6E8E5; --accent-ink:#0E5A53;
+  --amber:#9C5D00; --amber-soft:#F6E7CE;
+  --slate:#5A6B78; --slate-soft:#E2E8EC;
+  --shadow:0 1px 2px rgba(20,31,29,.06), 0 8px 24px -16px rgba(20,31,29,.28);
+  --r:10px;
+  --f-display:"Readex Pro","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Arabic",system-ui,"Segoe UI",sans-serif;
+  --f-data:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1413; --surface:#161F1D; --surface-2:#1E2825;
+    --ink:#E7ECEA; --ink-2:#A9B7B2; --ink-3:#7C8C86;
+    --rule:#26312E; --rule-strong:#35423E;
+    --accent:#54C3B2; --accent-soft:#12312D; --accent-ink:#7FD8C9;
+    --amber:#DFA457; --amber-soft:#33270F;
+    --slate:#8FA3B0; --slate-soft:#1C262B;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1413; --surface:#161F1D; --surface-2:#1E2825;
+  --ink:#E7ECEA; --ink-2:#A9B7B2; --ink-3:#7C8C86;
+  --rule:#26312E; --rule-strong:#35423E;
+  --accent:#54C3B2; --accent-soft:#12312D; --accent-ink:#7FD8C9;
+  --amber:#DFA457; --amber-soft:#33270F;
+  --slate:#8FA3B0; --slate-soft:#1C262B;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--f-body); font-size:15px; line-height:1.6;
+  direction:rtl; text-align:right;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-ink); text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px}
+
+.wrap{max-width:1220px; margin:0 auto; padding:0 20px 72px}
+
+/* ---------------------------------------------------------------- masthead */
+.masthead{
+  border-bottom:1px solid var(--rule); background:var(--surface);
+  position:sticky; top:0; z-index:40;
+}
+.masthead-in{
+  max-width:1220px; margin:0 auto; padding:14px 20px;
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+}
+.brand{display:flex; align-items:center; gap:11px; margin-inline-end:auto}
+.mark{
+  width:32px; height:32px; border-radius:8px; flex:0 0 auto;
+  background:var(--accent); display:grid; place-items:center;
+}
+.mark svg{width:19px; height:19px; display:block}
+.brand h1{
+  font-family:var(--f-display); font-size:17px; font-weight:600;
+  margin:0; letter-spacing:-.01em;
+}
+.brand .sub{font-size:12px; color:var(--ink-3); margin:0; line-height:1.3}
+.stamp{
+  font-family:var(--f-data); font-size:11.5px; color:var(--ink-3);
+  display:flex; align-items:center; gap:7px;
+}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);
+  animation:pulse 2.8s infinite}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 50%,transparent)}
+  70%{box-shadow:0 0 0 8px transparent} 100%{box-shadow:0 0 0 0 transparent}
+}
+@media (prefers-reduced-motion: reduce){ .pulse{animation:none} }
+.tbtn{
+  border:1px solid var(--rule-strong); background:var(--surface); color:var(--ink-2);
+  border-radius:8px; padding:6px 11px; font:inherit; font-size:12.5px; cursor:pointer;
+}
+.tbtn:hover{border-color:var(--accent); color:var(--accent-ink)}
+
+/* -------------------------------------------------------------- stat strip */
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin:22px 0 6px}
+.tile{
+  background:var(--surface); border:1px solid var(--rule); border-radius:var(--r);
+  padding:14px 15px; box-shadow:var(--shadow);
+}
+.tile .k{font-size:11.5px; color:var(--ink-3); letter-spacing:.04em; margin-bottom:6px}
+.tile .v{font-family:var(--f-data); font-size:25px; font-weight:600; line-height:1.1;
+  font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.tile .n{font-size:11.5px; color:var(--ink-3); margin-top:5px}
+.tile.hi .v{color:var(--accent-ink)}
+
+/* ----------------------------------------------------------------- filters */
+.controls{
+  background:var(--surface); border:1px solid var(--rule); border-radius:var(--r);
+  padding:13px 15px; margin:16px 0 20px; box-shadow:var(--shadow);
+  display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+}
+.controls input[type=search], .controls select{
+  font:inherit; font-size:13.5px; color:var(--ink); background:var(--surface-2);
+  border:1px solid var(--rule); border-radius:8px; padding:7px 10px;
+}
+.controls input[type=search]{flex:1 1 220px; min-width:180px}
+.seg{display:flex; gap:0; border:1px solid var(--rule); border-radius:8px; overflow:hidden}
+.seg button{
+  font:inherit; font-size:12.5px; padding:7px 12px; border:0; cursor:pointer;
+  background:var(--surface-2); color:var(--ink-2); border-inline-start:1px solid var(--rule);
+}
+.seg button:first-child{border-inline-start:0}
+.seg button[aria-pressed="true"]{background:var(--accent); color:#fff}
+:root[data-theme="dark"] .seg button[aria-pressed="true"],
+:root:not([data-theme="light"]) .seg button[aria-pressed="true"]{color:#0B1817}
+.count-note{font-size:12.5px; color:var(--ink-3); margin-inline-start:auto; font-family:var(--f-data)}
+
+/* -------------------------------------------------------------- band + row */
+.band{margin:30px 0 12px; display:flex; align-items:baseline; gap:11px}
+.band h2{font-family:var(--f-display); font-size:15.5px; font-weight:600; margin:0}
+.band .rule{flex:1; height:1px; background:var(--rule)}
+.band .qty{font-family:var(--f-data); font-size:12px; color:var(--ink-3)}
+
+.rows{display:flex; flex-direction:column; gap:9px}
+.row{
+  background:var(--surface); border:1px solid var(--rule); border-radius:var(--r);
+  box-shadow:var(--shadow); overflow:hidden; position:relative;
+}
+.row::before{
+  content:""; position:absolute; inset-block:0; inset-inline-start:0; width:4px;
+  background:var(--stripe, var(--rule-strong));
+}
+.row-head{
+  display:grid; grid-template-columns:60px 1fr auto; gap:14px; align-items:center;
+  padding:13px 16px 13px 20px; cursor:pointer;
+}
+.gauge{text-align:center}
+.gauge .num{
+  font-family:var(--f-data); font-size:21px; font-weight:600; line-height:1;
+  font-variant-numeric:tabular-nums; color:var(--stripe, var(--ink));
+}
+.gauge .bar{height:3px; border-radius:2px; background:var(--surface-2); margin-top:6px; overflow:hidden}
+.gauge .bar i{display:block; height:100%; background:var(--stripe, var(--ink-3))}
+.title-cell h3{
+  font-family:var(--f-display); font-size:15px; font-weight:500; margin:0 0 4px;
+  line-height:1.35; text-wrap:balance;
+}
+.meta{display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:12.5px; color:var(--ink-2)}
+.chip{
+  display:inline-flex; align-items:center; gap:5px; padding:2px 8px; border-radius:999px;
+  font-size:11.5px; background:var(--surface-2); color:var(--ink-2); border:1px solid var(--rule);
+  white-space:nowrap;
+}
+.chip.city{background:var(--slate-soft); color:var(--slate); border-color:transparent}
+.chip.src{font-family:var(--f-data); font-size:11px}
+.chip.new{background:var(--accent-soft); color:var(--accent-ink); border-color:transparent; font-weight:600}
+.chip.age{font-family:var(--f-data); font-size:11px}
+.expand{
+  border:1px solid var(--rule-strong); background:var(--surface); color:var(--ink-3);
+  width:28px; height:28px; border-radius:7px; cursor:pointer; font-size:14px; line-height:1;
+  display:grid; place-items:center; flex:0 0 auto;
+}
+.row[open] .expand{transform:rotate(180deg)}
+
+@media (max-width:560px){
+  .row-head{grid-template-columns:44px 1fr 26px; gap:10px; padding:11px 12px 11px 14px}
+  .gauge .num{font-size:18px}
+  .title-cell h3{font-size:14px}
+  .expand{width:26px;height:26px}
+  .wrap{padding:0 14px 56px}
+  .bd-item{grid-template-columns:78px 1fr 46px; font-size:11.5px}
+}
+.detail{border-top:1px solid var(--rule); padding:16px 20px; display:none; background:var(--surface-2)}
+.row[open] .detail{display:block}
+.detail-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:22px}
+@media (max-width:760px){ .detail-grid{grid-template-columns:1fr} }
+.dl{font-size:12px; color:var(--ink-3); letter-spacing:.05em; margin:0 0 9px}
+
+.bd{display:flex; flex-direction:column; gap:7px}
+.bd-item{display:grid; grid-template-columns:96px 1fr 52px; gap:9px; align-items:center; font-size:12.5px}
+.bd-item .track{height:6px; border-radius:3px; background:var(--surface); border:1px solid var(--rule); overflow:hidden}
+.bd-item .track i{display:block; height:100%; background:var(--accent); opacity:.8}
+.bd-item .val{font-family:var(--f-data); font-size:11.5px; color:var(--ink-2); text-align:start;
+  font-variant-numeric:tabular-nums}
+
+.skills{display:flex; flex-wrap:wrap; gap:5px}
+.skill{font-size:11.5px; padding:2px 8px; border-radius:6px; background:var(--accent-soft);
+  color:var(--accent-ink); font-family:var(--f-data)}
+.gap{font-size:11.5px; padding:2px 8px; border-radius:6px; background:var(--amber-soft); color:var(--amber)}
+.note{font-size:12.5px; color:var(--ink-2); margin:10px 0 0}
+.actions{display:flex; gap:9px; flex-wrap:wrap; margin-top:14px}
+.btn{
+  display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:500;
+  padding:8px 14px; border-radius:8px; background:var(--accent); color:#fff;
+}
+:root[data-theme="dark"] .btn, :root:not([data-theme="light"]) .btn{color:#0B1817}
+.btn:hover{text-decoration:none; filter:brightness(1.06)}
+.btn.ghost{background:transparent; color:var(--ink-2); border:1px solid var(--rule-strong)}
+.excerpt{
+  font-size:13px; color:var(--ink-2); max-height:180px; overflow-y:auto;
+  white-space:pre-wrap; border-inline-start:2px solid var(--rule); padding-inline-start:12px;
+  margin-top:12px;
+}
+
+/* --------------------------------------------------------------- panels */
+.panel{
+  background:var(--surface); border:1px solid var(--rule); border-radius:var(--r);
+  padding:18px 20px; box-shadow:var(--shadow); margin-top:26px;
+}
+.panel h2{font-family:var(--f-display); font-size:15px; font-weight:600; margin:0 0 4px}
+.panel p.lede{font-size:13px; color:var(--ink-2); margin:0 0 14px; max-width:70ch}
+.link-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:9px}
+.link-card{
+  border:1px solid var(--rule); border-radius:8px; padding:10px 12px; background:var(--surface-2);
+  display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:13px;
+}
+.link-card:hover{border-color:var(--accent); text-decoration:none}
+.link-card span.arrow{color:var(--ink-3); font-family:var(--f-data)}
+
+table.health{width:100%; border-collapse:collapse; font-size:12.5px}
+table.health th{
+  text-align:start; font-weight:500; color:var(--ink-3); font-size:11.5px;
+  letter-spacing:.04em; padding:6px 8px; border-bottom:1px solid var(--rule);
+}
+table.health td{padding:7px 8px; border-bottom:1px solid var(--rule); font-variant-numeric:tabular-nums}
+table.health td.n{font-family:var(--f-data)}
+.dot{display:inline-block; width:7px; height:7px; border-radius:50%; margin-inline-end:6px}
+.dot.ok{background:var(--accent)} .dot.warn{background:var(--amber)} .dot.off{background:var(--ink-3)}
+.scroll-x{overflow-x:auto}
+
+.notice-bar{
+  margin-top:22px; background:var(--amber-soft); border:1px solid transparent;
+  border-radius:var(--r); padding:12px 15px; font-size:13px; color:var(--ink-2);
+  display:flex; gap:12px; align-items:flex-start; line-height:1.65;
+}
+.notice-bar strong{color:var(--amber); flex:0 0 auto; font-weight:600}
+.empty{
+  text-align:center; padding:52px 20px; color:var(--ink-3); font-size:14px;
+  border:1px dashed var(--rule-strong); border-radius:var(--r);
+}
+footer{margin-top:40px; padding-top:18px; border-top:1px solid var(--rule);
+  font-size:12px; color:var(--ink-3); line-height:1.8}
+</style>
+
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-in">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9" opacity=".45"/><circle cx="12" cy="12" r="4.5" opacity=".8"/>
+          <circle cx="12" cy="12" r="1.4" fill="#fff" stroke="none"/><path d="M12 12L18.5 6"/>
+        </svg>
+      </div>
+      <div>
+        <h1>رادار الشواغر السعودية</h1>
+        <p class="sub">مطابقة يومية بين سيرة عبدالسلام الفيفي والشواغر المعلنة</p>
+      </div>
+    </div>
+    <div class="stamp"><span class="pulse"></span><span id="stamp">—</span></div>
+    <button class="tbtn" id="theme" type="button">تبديل السمة</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="notice"></div>
+  <section class="stats" id="stats"></section>
+
+  <section class="controls">
+    <input type="search" id="q" placeholder="ابحث في المسمى أو جهة العمل أو الوصف…" aria-label="بحث">
+    <select id="city" aria-label="المدينة"></select>
+    <select id="source" aria-label="المصدر"></select>
+    <div class="seg" role="group" aria-label="الحداثة">
+      <button type="button" data-age="all" aria-pressed="true">الكل</button>
+      <button type="button" data-age="3">٣ أيام</button>
+      <button type="button" data-age="7">أسبوع</button>
+      <button type="button" data-age="30">شهر</button>
+    </div>
+    <select id="sort" aria-label="الترتيب">
+      <option value="score">الأعلى مطابقة</option>
+      <option value="new">الأحدث ظهورًا</option>
+      <option value="posted">الأحدث نشرًا</option>
+    </select>
+    <span class="count-note" id="countNote"></span>
+  </section>
+
+  <main id="list"></main>
+
+  <section class="panel" id="restricted"></section>
+  <section class="panel" id="health"></section>
+
+  <footer>
+    <div id="foot"></div>
+  </footer>
+</div>
+
+<script id="payload" type="application/json">{"generated_at": "2026-08-27T06:21:40+00:00", "notice": "هذه دفعة أولية جُمعت يدويًا من قوائم صبار العامة قبل أول تشغيل مجدول. أوصاف الإعلانات غير مجلوبة فيها، فالدرجات محسوبة على المسمى والموقع ومستوى الخبرة والحداثة فقط ومحدودة بسقف ٦٩. أول تشغيل آلي يستبدلها ببيانات كاملة من مصادر واجهات التوظيف.", "jobs": [{"uid": "9cd9856b5d7da0aa", "fingerprint": "a1a6f1800a4880db", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-quality-engineer/id-1678ca92-4eaa-41e0-9fc0-0ce28b9c5a6d", "title": "Quality Engineer", "company": "WSP in the Middle East", "url": "https://sabbar.com/en/jobs/c-riyadh-r-quality-engineer/id-1678ca92-4eaa-41e0-9fc0-0ce28b9c5a6d", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-01", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 69.0, "score_breakdown": {"thin": true, "title": {"score": 46.2, "max": 46.2, "matched": "quality engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 4.9, "max": 12.3, "age_days": 26}}, "matched_skills": [], "missing_signals": [], "verdict": "مرشّح قوي", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "188633f015cb938c", "fingerprint": "a89ea70fd2e10285", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-quality-engineer/id-c9c4cb1b-fbef-468a-b12a-a1b2366657df", "title": "Quality Engineer", "company": "AtkinsRéalis", "url": "https://sabbar.com/en/jobs/c-riyadh-r-quality-engineer/id-c9c4cb1b-fbef-468a-b12a-a1b2366657df", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-01", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 69.0, "score_breakdown": {"thin": true, "title": {"score": 46.2, "max": 46.2, "matched": "quality engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 4.9, "max": 12.3, "age_days": 26}}, "matched_skills": [], "missing_signals": [], "verdict": "مرشّح قوي", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "2311ca3c702937f7", "fingerprint": "dc4b5d71ad4c67be", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-quality-engineer/id-1d467c77-7955-4357-851e-0412a2942674", "title": "Quality Engineer", "company": "Nextpower", "url": "https://sabbar.com/en/jobs/c-riyadh-r-quality-engineer/id-1d467c77-7955-4357-851e-0412a2942674", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-14", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 69.0, "score_breakdown": {"thin": true, "title": {"score": 46.2, "max": 46.2, "matched": "quality engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 8.0, "max": 12.3, "age_days": 13}}, "matched_skills": [], "missing_signals": [], "verdict": "مرشّح قوي", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "c4c67ea3c7796802", "fingerprint": "230548a69eba3c39", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-planning-engineer/id-047eac11-dddd-4ae4-a299-3ed9a81f490f", "title": "Planning Engineer", "company": "RPC Co.", "url": "https://sabbar.com/en/jobs/c-riyadh-r-planning-engineer/id-047eac11-dddd-4ae4-a299-3ed9a81f490f", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-06", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 69.0, "score_breakdown": {"thin": true, "title": {"score": 46.2, "max": 46.2, "matched": "planning engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 4.9, "max": 12.3, "age_days": 21}}, "matched_skills": ["planning"], "missing_signals": [], "verdict": "مرشّح قوي", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "bbdfcf1ea5b7dfb8", "fingerprint": "f6488819d2a83183", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-planning-engineer/id-ffec86bb-4b0c-43d1-b10a-204d44db90b9", "title": "Planning Engineer", "company": "MEMF Electrical Industries Co", "url": "https://sabbar.com/en/jobs/c-riyadh-r-planning-engineer/id-ffec86bb-4b0c-43d1-b10a-204d44db90b9", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-08", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 69.0, "score_breakdown": {"thin": true, "title": {"score": 46.2, "max": 46.2, "matched": "planning engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 4.9, "max": 12.3, "age_days": 19}}, "matched_skills": ["planning"], "missing_signals": [], "verdict": "مرشّح قوي", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "af96b33fc6cc26ff", "fingerprint": "d391d99fa56373f3", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer/id-dbee6fc3-3d6d-4e69-8980-d09b8445b762", "title": "Industrial Engineer", "company": "شركة هداية للصناعات المعدنية", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer/id-dbee6fc3-3d6d-4e69-8980-d09b8445b762", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-16", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 69.0, "score_breakdown": {"thin": true, "title": {"score": 46.2, "max": 46.2, "matched": "industrial engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 8.0, "max": 12.3, "age_days": 11}}, "matched_skills": [], "missing_signals": [], "verdict": "مرشّح قوي", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "0cd2487ef0525d35", "fingerprint": "4e469696edf8c0b5", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-supplier-quality-engineer/id-eeb78e81-c182-405e-9206-69683aa6ac50", "title": "Supplier Quality Engineer", "company": "Nextpower", "url": "https://sabbar.com/en/jobs/c-riyadh-r-supplier-quality-engineer/id-eeb78e81-c182-405e-9206-69683aa6ac50", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-14", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 62.5, "score_breakdown": {"thin": true, "title": {"score": 33.2, "max": 46.2, "matched": "quality engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 8.0, "max": 12.3, "age_days": 13}}, "matched_skills": [], "missing_signals": [], "verdict": "مرشّح قوي", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "7785990177084b5d", "fingerprint": "46203c6b95bb0de4", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-mrp-controller-and-planning-engineer/id-05aec5eb-ca2e-4132-abce-293382a616df", "title": "MRP Controller and Planning Engineer", "company": "Sulzer", "url": "https://sabbar.com/en/jobs/c-riyadh-r-mrp-controller-and-planning-engineer/id-05aec5eb-ca2e-4132-abce-293382a616df", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-14", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 62.5, "score_breakdown": {"thin": true, "title": {"score": 33.2, "max": 46.2, "matched": "planning engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 8.0, "max": 12.3, "age_days": 13}}, "matched_skills": ["planning"], "missing_signals": [], "verdict": "مرشّح قوي", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "e12615f58cddd33f", "fingerprint": "fa2814207751ffe4", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-isg-staff-manufacturing-engineer/id-0d9a6492-e180-40b1-9315-657e02ca39d0", "title": "ISG Staff Manufacturing Engineer", "company": "Lenovo", "url": "https://sabbar.com/en/jobs/c-riyadh-r-isg-staff-manufacturing-engineer/id-0d9a6492-e180-40b1-9315-657e02ca39d0", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-05", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 59.9, "score_breakdown": {"thin": true, "title": {"score": 33.2, "max": 46.2, "matched": "manufacturing engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 4.9, "max": 12.3, "age_days": 22}}, "matched_skills": ["manufacturing"], "missing_signals": [], "verdict": "مرشّح قوي", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "69a3723990ae0317", "fingerprint": "c30147f0d074f803", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-al-khobar-r-quality-control-supervisor/id-1dee13b1-1810-49d1-8544-fa21e35fd452", "title": "Quality Control Supervisor", "company": "Target Engineering Construction Co", "url": "https://sabbar.com/en/jobs/c-al-khobar-r-quality-control-supervisor/id-1dee13b1-1810-49d1-8544-fa21e35fd452", "location_raw": "Al Khobar", "city_en": "Khobar", "city_ar": "الخبر", "description": "", "employment_type": "", "posted_at": "2026-08-23", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 55.2, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "quality engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 17.5, "max": 18.5, "city": "الخبر"}, "freshness": {"score": 10.5, "max": 12.3, "age_days": 4}}, "matched_skills": ["quality control"], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/r-industrial-engineer"}]}, {"uid": "90e18e34c9e192f0", "fingerprint": "03c153a2fabb182e", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-dammam-r-quality-inspector/id-662a28b0-1c5c-4b1d-a752-79f4e9819fe0", "title": "Quality Inspector", "company": "GE Vernova", "url": "https://sabbar.com/en/jobs/c-dammam-r-quality-inspector/id-662a28b0-1c5c-4b1d-a752-79f4e9819fe0", "location_raw": "Dammam", "city_en": "Dammam", "city_ar": "الدمام", "description": "", "employment_type": "", "posted_at": "2026-08-23", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 55.2, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "quality engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 17.5, "max": 18.5, "city": "الدمام"}, "freshness": {"score": 10.5, "max": 12.3, "age_days": 4}}, "matched_skills": [], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/r-industrial-engineer"}]}, {"uid": "db1875757d20eea3", "fingerprint": "7837a3f5beda5309", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-al-jubail-r-project-management-engineer/id-59016346-54d0-4aa5-99f6-21befde9007e", "title": "Project Management Engineer", "company": "يوكوجاوا للخدمات العربية السعودية", "url": "https://sabbar.com/en/jobs/c-al-jubail-r-project-management-engineer/id-59016346-54d0-4aa5-99f6-21befde9007e", "location_raw": "Al Jubail", "city_en": "Jubail", "city_ar": "الجبيل", "description": "", "employment_type": "", "posted_at": "2026-08-23", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 54.4, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "management trainee"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 16.6, "max": 18.5, "city": "الجبيل"}, "freshness": {"score": 10.5, "max": 12.3, "age_days": 4}}, "matched_skills": ["project management"], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/r-industrial-engineer"}]}, {"uid": "de0993ef860df870", "fingerprint": "bf84a3312031e0a0", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-procurement-engineer/id-45770a37-9ea2-4362-a1f6-6932f136f167", "title": "Procurement Engineer", "company": "HanmiGlobal MENA", "url": "https://sabbar.com/en/jobs/c-riyadh-r-procurement-engineer/id-45770a37-9ea2-4362-a1f6-6932f136f167", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-17", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 53.9, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "procurement specialist"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 8.0, "max": 12.3, "age_days": 10}}, "matched_skills": ["procurement"], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "7c9309f3e056a405", "fingerprint": "241464ea2e6565bc", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-manufacturing-engineering-expert/id-545b116e-8e2a-4c92-8ec3-43baa79a2aa8", "title": "Manufacturing Engineering Expert", "company": "Nextpower", "url": "https://sabbar.com/en/jobs/c-riyadh-r-manufacturing-engineering-expert/id-545b116e-8e2a-4c92-8ec3-43baa79a2aa8", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-14", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 53.7, "score_breakdown": {"thin": true, "title": {"score": 33.2, "max": 46.2, "matched": "manufacturing engineer"}, "skills": null, "seniority": {"score": 3.5, "max": 23.1, "note": "مسمّى قيادي/أقدم", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 8.0, "max": 12.3, "age_days": 13}}, "matched_skills": ["manufacturing"], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "96c52b3e438059ad", "fingerprint": "c1aff16787775c87", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-abha-r-it-operations-specialist/id-6a3522be-bbab-4bf5-9b2e-9b18b5b2f225", "title": "IT Operations Specialist", "company": "AQS-PEPSI", "url": "https://sabbar.com/en/jobs/c-abha-r-it-operations-specialist/id-6a3522be-bbab-4bf5-9b2e-9b18b5b2f225", "location_raw": "Abha", "city_en": "Abha", "city_ar": "أبها", "description": "", "employment_type": "", "posted_at": "2026-08-24", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 51.3, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "operations engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 11.1, "max": 18.5, "city": "أبها"}, "freshness": {"score": 12.3, "max": 12.3, "age_days": 3}}, "matched_skills": [], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/r-industrial-engineer"}]}, {"uid": "11fc4c78158c7a08", "fingerprint": "0eaece3e3d18c925", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/r-data-management-specialist/id-5d751427-e8f2-47bd-a05c-01c502c95cfe", "title": "Data Management Specialist", "company": "Masterworks", "url": "https://sabbar.com/en/jobs/r-data-management-specialist/id-5d751427-e8f2-47bd-a05c-01c502c95cfe", "location_raw": "Saudi Arabia", "city_en": "Saudi Arabia", "city_ar": "السعودية — مدينة غير محددة", "description": "", "employment_type": "", "posted_at": "2026-08-27", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 47.3, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "data analyst"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 6.5, "max": 18.5, "city": "السعودية — مدينة غير محددة"}, "freshness": {"score": 12.3, "max": 12.3, "age_days": 0}}, "matched_skills": [], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs"}]}, {"uid": "78591ddd614d5d95", "fingerprint": "399e4b956586f86e", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-al-baha-r-quality-controller/id-d29ee935-9df3-4316-b7f9-56797593058c", "title": "Quality Controller", "company": "نبني", "url": "https://sabbar.com/en/jobs/c-al-baha-r-quality-controller/id-d29ee935-9df3-4316-b7f9-56797593058c", "location_raw": "Al Baha", "city_en": "Al Baha", "city_ar": "الباحة", "description": "", "employment_type": "", "posted_at": "2026-08-23", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 45.8, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "quality engineer"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 6.5, "max": 18.5, "city": "الباحة"}, "freshness": {"score": 10.5, "max": 12.3, "age_days": 4}}, "matched_skills": ["quality control"], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/r-industrial-engineer"}]}, {"uid": "aea3ce2269add0d7", "fingerprint": "c4fdad1657a93391", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/r-technical-planner/id-e3106a78-2021-46fa-8c03-0f20f2798412", "title": "Technical Planner", "company": "flyadeal", "url": "https://sabbar.com/en/jobs/r-technical-planner/id-e3106a78-2021-46fa-8c03-0f20f2798412", "location_raw": "Saudi Arabia", "city_en": "Saudi Arabia", "city_ar": "السعودية — مدينة غير محددة", "description": "", "employment_type": "", "posted_at": "2026-08-23", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 45.8, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "demand planner"}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 6.5, "max": 18.5, "city": "السعودية — مدينة غير محددة"}, "freshness": {"score": 10.5, "max": 12.3, "age_days": 4}}, "matched_skills": [], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/r-industrial-engineer"}]}, {"uid": "19fdca78839271f5", "fingerprint": "9b1c25ddf8ba83ad", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-al-jubail-r-sr-planner-iv-tam-planning-job/id-4d71ef8a-2bd9-49a5-9500-f26604dd21bb", "title": "Sr Planner IV TAM planning", "company": "TASNEE", "url": "https://sabbar.com/en/jobs/c-al-jubail-r-sr-planner-iv-tam-planning-job/id-4d71ef8a-2bd9-49a5-9500-f26604dd21bb", "location_raw": "Al Jubail", "city_en": "Jubail", "city_ar": "الجبيل", "description": "", "employment_type": "", "posted_at": "2026-08-23", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 45.6, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "planning engineer"}, "skills": null, "seniority": {"score": 3.5, "max": 23.1, "note": "مسمّى قيادي/أقدم", "required_years": null}, "location": {"score": 16.6, "max": 18.5, "city": "الجبيل"}, "freshness": {"score": 10.5, "max": 12.3, "age_days": 4}}, "matched_skills": ["planning"], "missing_signals": [], "verdict": "يستحق النظر", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/r-industrial-engineer"}]}, {"uid": "c3c0573306d0713b", "fingerprint": "b54848693d653f11", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/r-head-of-procurement/id-14cfa865-2d92-4fda-828c-ae61b36a6911", "title": "Head of Procurement", "company": "Starlinks", "url": "https://sabbar.com/en/jobs/r-head-of-procurement/id-14cfa865-2d92-4fda-828c-ae61b36a6911", "location_raw": "Saudi Arabia", "city_en": "Saudi Arabia", "city_ar": "السعودية — مدينة غير محددة", "description": "", "employment_type": "", "posted_at": "2026-08-27", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 38.5, "score_breakdown": {"thin": true, "title": {"score": 23.1, "max": 46.2, "matched": "procurement specialist"}, "skills": null, "seniority": {"score": 3.5, "max": 23.1, "note": "مسمّى قيادي/أقدم", "required_years": null}, "location": {"score": 6.5, "max": 18.5, "city": "السعودية — مدينة غير محددة"}, "freshness": {"score": 12.3, "max": 12.3, "age_days": 0}}, "matched_skills": ["procurement"], "missing_signals": [], "verdict": "احتمال ضعيف", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs"}]}, {"uid": "285dc2bce1223a11", "fingerprint": "1482c5495ad785bb", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-technical-engineer/id-f51e197f-c54a-44eb-bda8-39d43a1bf8d9", "title": "Technical Engineer", "company": "Brand Aid Marketing Solutions", "url": "https://sabbar.com/en/jobs/c-riyadh-r-technical-engineer/id-f51e197f-c54a-44eb-bda8-39d43a1bf8d9", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-22", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 36.4, "score_breakdown": {"thin": true, "title": {"score": 0.0, "max": 46.2, "matched": ""}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 10.5, "max": 12.3, "age_days": 5}}, "matched_skills": [], "missing_signals": [], "verdict": "احتمال ضعيف", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "f9091e8bea8b8842", "fingerprint": "9e1657907689f6c1", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/r-junior-application-engineer-cmd/id-e13fbfa2-6a07-4f4f-94e0-f93f31b25530", "title": "Junior Application Engineer CMD", "company": "Zahid Tractor", "url": "https://sabbar.com/en/jobs/r-junior-application-engineer-cmd/id-e13fbfa2-6a07-4f4f-94e0-f93f31b25530", "location_raw": "Saudi Arabia", "city_en": "Saudi Arabia", "city_ar": "السعودية — مدينة غير محددة", "description": "", "employment_type": "", "posted_at": "2026-08-27", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 34.6, "score_breakdown": {"thin": true, "title": {"score": 0.0, "max": 46.2, "matched": ""}, "skills": null, "seniority": {"score": 21.9, "max": 23.1, "note": "موجّه للخريجين/المبتدئين", "required_years": null}, "location": {"score": 6.5, "max": 18.5, "city": "السعودية — مدينة غير محددة"}, "freshness": {"score": 12.3, "max": 12.3, "age_days": 0}}, "matched_skills": [], "missing_signals": [], "verdict": "احتمال ضعيف", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs"}]}, {"uid": "d651e9f414ec3ac0", "fingerprint": "c7a24a672e8e06a6", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/c-riyadh-r-field-application-engineer/id-2bed8386-9cb3-4d10-936e-fa9734204d3a", "title": "Field Application Engineer", "company": "HQTS Group", "url": "https://sabbar.com/en/jobs/c-riyadh-r-field-application-engineer/id-2bed8386-9cb3-4d10-936e-fa9734204d3a", "location_raw": "Riyadh", "city_en": "Riyadh", "city_ar": "الرياض", "description": "", "employment_type": "", "posted_at": "2026-08-16", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 34.3, "score_breakdown": {"thin": true, "title": {"score": 0.0, "max": 46.2, "matched": ""}, "skills": null, "seniority": {"score": 13.8, "max": 23.1, "note": "", "required_years": null}, "location": {"score": 18.5, "max": 18.5, "city": "الرياض"}, "freshness": {"score": 8.0, "max": 12.3, "age_days": 11}}, "matched_skills": [], "missing_signals": [], "verdict": "احتمال ضعيف", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer"}]}, {"uid": "52240e9eb54d2ea0", "fingerprint": "e395cc9bb7dbe6d8", "source": "seed:sabbar", "source_family": "manual", "external_id": "https://sabbar.com/en/jobs/r-residue-storage-area-rsa-specialist/id-04ebf03a-8b29-4d4c-bca3-8ee78317228b", "title": "Residue Storage Area (RSA) Specialist", "company": "JAL International Co. Ltd.", "url": "https://sabbar.com/en/jobs/r-residue-storage-area-rsa-specialist/id-04ebf03a-8b29-4d4c-bca3-8ee78317228b", "location_raw": "Saudi Arabia", "city_en": "Saudi Arabia", "city_ar": "السعودية — مدينة غير محددة", "description": "", "employment_type": "", "posted_at": "2026-08-23", "first_seen": "2026-08-27T06:21:40+00:00", "last_seen": "2026-08-27T06:21:40+00:00", "score": 33.0, "score_breakdown": {"thin": true, "title": {"score": 0.0, "max": 46.2, "matched": ""}, "skills": null, "seniority": {"score": 21.9, "max": 23.1, "note": "موجّه للخريجين/المبتدئين", "required_years": null}, "location": {"score": 6.5, "max": 18.5, "city": "السعودية — مدينة غير محددة"}, "freshness": {"score": 10.5, "max": 12.3, "age_days": 4}}, "matched_skills": [], "missing_signals": [], "verdict": "احتمال ضعيف", "is_open": 1, "also_on": [{"source": "قائمة صبار المصدر", "url": "https://sabbar.com/en/jobs/r-industrial-engineer"}]}], "per_source": {}, "errors": {}, "sources": {"platforms": [{"id": "jadarat", "name_ar": "جدارات", "name_en": "Jadarat (national employment platform)", "tier": 2, "enabled": true}, {"id": "sabbar", "name_ar": "صبار", "name_en": "Sabbar", "tier": 2, "enabled": true}, {"id": "taqat", "name_ar": "طاقات", "name_en": "Taqat (HRDF)", "tier": 2, "enabled": true}, {"id": "qiwa", "name_ar": "قوى", "name_en": "Qiwa jobs", "tier": 2, "enabled": false}, {"id": "bayt", "name_ar": "بيت.كوم", "name_en": "Bayt", "tier": 2, "enabled": true}, {"id": "gulftalent", "name_ar": "جلف تالنت", "name_en": "GulfTalent", "tier": 2, "enabled": true}, {"id": "tanqeeb", "name_ar": "تنقيب", "name_en": "Tanqeeb", "tier": 2, "enabled": true}, {"id": "wadhefa", "name_ar": "وظيفة.كوم", "name_en": "Wadhefa", "tier": 2, "enabled": true}, {"id": "linkedin", "name_ar": "لِنكدإن", "name_en": "LinkedIn", "tier": 3, "enabled": false, "reason_ar": "لِنكدإن يمنع الجمع الآلي في شروط الاستخدام ويحجب عناوين مراكز البيانات (وهي ما تعمل عليه GitHub Actions). لا يُجمع آليًا في التشغيل السحابي.\n", "saved_searches": [{"label": "مهندس صناعي — الرياض", "url": "https://www.linkedin.com/jobs/search/?keywords=Industrial%20Engineer&location=Riyadh%2C%20Saudi%20Arabia&f_TPR=r86400&f_E=1%2C2"}, {"label": "سلسلة إمداد — الرياض", "url": "https://www.linkedin.com/jobs/search/?keywords=Supply%20Chain&location=Riyadh%2C%20Saudi%20Arabia&f_TPR=r86400&f_E=1%2C2"}, {"label": "مهندس صناعي — المنطقة الشرقية", "url": "https://www.linkedin.com/jobs/search/?keywords=Industrial%20Engineer&location=Eastern%20Province%2C%20Saudi%20Arabia&f_TPR=r86400&f_E=1%2C2"}, {"label": "عمليات/تخطيط — جازان", "url": "https://www.linkedin.com/jobs/search/?keywords=Operations%20OR%20Planning&location=Jazan%2C%20Saudi%20Arabia&f_TPR=r604800"}, {"label": "برامج الخريجين — السعودية", "url": "https://www.linkedin.com/jobs/search/?keywords=Graduate%20Program%20OR%20Fresh%20Graduate&location=Saudi%20Arabia&f_TPR=r604800&f_E=1"}, {"label": "مشتريات/لوجستيات — السعودية", "url": "https://www.linkedin.com/jobs/search/?keywords=Procurement%20OR%20Logistics&location=Saudi%20Arabia&f_TPR=r86400&f_E=1%2C2"}]}, {"id": "indeed", "name_ar": "إنديد", "name_en": "Indeed", "tier": 3, "enabled": false, "reason_ar": "إنديد أغلق واجهة الناشرين العامة ويستخدم حماية ضد الآليات؛ الجمع الآلي السحابي غير موثوق وغير متوافق مع شروطه.\n", "saved_searches": [{"label": "مهندس صناعي — السعودية (آخر 24 ساعة)", "url": "https://sa.indeed.com/jobs?q=industrial+engineer&l=Saudi+Arabia&fromage=1"}, {"label": "سلسلة إمداد — الرياض", "url": "https://sa.indeed.com/jobs?q=supply+chain&l=Riyadh&fromage=3"}, {"label": "مهندس صناعي — جازان", "url": "https://sa.indeed.com/jobs?q=%D9%85%D9%87%D9%86%D8%AF%D8%B3+%D8%B5%D9%86%D8%A7%D8%B9%D9%8A&l=Jazan&fromage=7"}, {"label": "عمليات/جودة — الدمام", "url": "https://sa.indeed.com/jobs?q=operations+OR+quality+engineer&l=Dammam&fromage=3"}]}]}}</script>
+<script>
+(function(){
+  "use strict";
+  const DATA = JSON.parse(document.getElementById("payload").textContent);
+  const jobs = DATA.jobs || [];
+
+  // ---------------------------------------------------------------- theme
+  const root = document.documentElement;
+  try{ const t = localStorage.getItem("radar-theme"); if(t) root.setAttribute("data-theme", t); }catch(e){}
+  document.getElementById("theme").addEventListener("click", function(){
+    const cur = root.getAttribute("data-theme");
+    const next = cur === "dark" ? "light" : cur === "light" ? "dark"
+      : (matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark");
+    root.setAttribute("data-theme", next);
+    try{ localStorage.setItem("radar-theme", next); }catch(e){}
+  });
+
+  // ------------------------------------------------------------- helpers
+  const BANDS = [
+    {key:"قدّم اليوم",   min:72, stripe:"var(--accent)",   note:"تطابق عالٍ مع السيرة — الأولوية القصوى"},
+    {key:"مرشّح قوي",    min:58, stripe:"var(--accent)",   note:"تطابق جيد، يستحق تخصيص خطاب تقديم"},
+    {key:"يستحق النظر",  min:44, stripe:"var(--amber)",    note:"تطابق جزئي — راجع المتطلبات قبل التقديم"},
+    {key:"احتمال ضعيف",  min:30, stripe:"var(--slate)",    note:"فجوة واضحة في الخبرة أو التخصص"}
+  ];
+  const band = s => BANDS.find(b => s >= b.min) || {key:"دون العتبة", min:0, stripe:"var(--ink-3)", note:""};
+  const esc = s => String(s==null?"":s).replace(/[&<>"']/g, c =>
+    ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const dayjs = iso => { if(!iso) return null; const d = new Date(iso); return isNaN(d)?null:d; };
+  const ageDays = j => {
+    const d = dayjs(j.posted_at) || dayjs(j.first_seen);
+    if(!d) return null;
+    return Math.max(0, Math.round((Date.now() - d.getTime())/864e5));
+  };
+  const AR = new Intl.NumberFormat("ar-SA");
+  function fmtAge(n){
+    if(n === null) return "تاريخ غير معلن";
+    if(n === 0) return "اليوم";
+    if(n === 1) return "أمس";
+    if(n === 2) return "قبل يومين";
+    if(n <= 10) return "قبل " + AR.format(n) + " أيام";
+    return "قبل " + AR.format(n) + " يومًا";
+  }
+
+  const SRC_LABEL = {workday:"Workday", oracle:"Oracle", greenhouse:"Greenhouse", lever:"Lever",
+    smartrecruiters:"SmartRecruiters", ashby:"Ashby", recruitee:"Recruitee", jadarat:"جدارات",
+    sabbar:"صبار", taqat:"طاقات", aggregator:"موقع تجميعي", browser:"موقع الشركة", manual:"إدخال يدوي"};
+  const srcName = j => SRC_LABEL[j.source_family] || j.source_family || j.source;
+
+  // -------------------------------------------------------------- state
+  // "جديد" only means something once there is a previous run to be new against.
+  // On the very first batch every row would carry it, which is noise, so the
+  // badge is suppressed when nearly everything is new.
+  const NEW_MS = 36e5 * 30;
+  const newCount = jobs.filter(j => (Date.now() - new Date(j.first_seen).getTime()) < NEW_MS).length;
+  const SHOW_NEW = jobs.length > 0 && newCount / jobs.length < 0.7;
+
+  const state = {q:"", city:"", source:"", age:"all", sort:"score"};
+  try{
+    const saved = JSON.parse(localStorage.getItem("radar-filters")||"null");
+    if(saved) Object.assign(state, saved);
+  }catch(e){}
+  const persist = () => { try{ localStorage.setItem("radar-filters", JSON.stringify(state)); }catch(e){} };
+
+  // ------------------------------------------------------------- filters
+  const cities = [...new Set(jobs.map(j=>j.city_ar).filter(Boolean))].sort();
+  const sources = [...new Set(jobs.map(srcName).filter(Boolean))].sort();
+  const fill = (el, items, allLabel) => {
+    el.innerHTML = '<option value="">' + allLabel + "</option>" +
+      items.map(x => '<option value="'+esc(x)+'">'+esc(x)+"</option>").join("");
+  };
+  const cityEl = document.getElementById("city"), srcEl = document.getElementById("source");
+  fill(cityEl, cities, "كل المدن"); fill(srcEl, sources, "كل المصادر");
+  cityEl.value = state.city; srcEl.value = state.source;
+  document.getElementById("q").value = state.q;
+  document.getElementById("sort").value = state.sort;
+  document.querySelectorAll("[data-age]").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.age === state.age)));
+
+  function apply(){
+    const q = state.q.trim().toLowerCase();
+    let out = jobs.filter(j => {
+      if(state.city && j.city_ar !== state.city) return false;
+      if(state.source && srcName(j) !== state.source) return false;
+      if(state.age !== "all"){
+        const a = ageDays(j);
+        if(a === null || a > Number(state.age)) return false;
+      }
+      if(q){
+        const hay = (j.title+" "+j.company+" "+(j.description||"")).toLowerCase();
+        if(!hay.includes(q)) return false;
+      }
+      return true;
+    });
+    if(state.sort === "score") out.sort((a,b)=> b.score - a.score);
+    if(state.sort === "new") out.sort((a,b)=> String(b.first_seen).localeCompare(String(a.first_seen)));
+    if(state.sort === "posted") out.sort((a,b)=> String(b.posted_at||"").localeCompare(String(a.posted_at||"")));
+    return out;
+  }
+
+  // ------------------------------------------------------------- render
+  function bdRow(label, obj){
+    if(!obj) return "";
+    const pct = obj.max ? Math.round(100*obj.score/obj.max) : 0;
+    return '<div class="bd-item"><span>'+esc(label)+'</span>'+
+      '<span class="track"><i style="width:'+pct+'%"></i></span>'+
+      '<span class="val">'+obj.score+"/"+obj.max+"</span></div>";
+  }
+
+  function card(j){
+    const b = band(j.score), a = ageDays(j), bd = j.score_breakdown || {};
+    const isNew = SHOW_NEW && (Date.now() - new Date(j.first_seen).getTime()) < NEW_MS;
+    const skills = (j.matched_skills||[]).slice(0,12)
+      .map(s => '<span class="skill">'+esc(s)+"</span>").join("");
+    const gaps = (j.missing_signals||[]).slice(0,6)
+      .map(s => '<span class="gap">'+esc(s)+"</span>").join("");
+    const alt = (j.also_on||[]).map(x =>
+      '<a class="chip src" href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(x.source)+"</a>").join(" ");
+    const yrs = bd.seniority && bd.seniority.required_years;
+    return '<article class="row" style="--stripe:'+b.stripe+'">'+
+      '<div class="row-head" role="button" tabindex="0">'+
+        '<div class="gauge"><div class="num">'+j.score.toFixed(0)+'</div>'+
+          '<div class="bar"><i style="width:'+Math.min(100,j.score)+'%"></i></div></div>'+
+        '<div class="title-cell"><h3>'+esc(j.title)+"</h3>"+
+          '<div class="meta"><strong>'+esc(j.company)+"</strong>"+
+            '<span class="chip city">'+esc(j.city_ar||j.city_en)+"</span>"+
+            '<span class="chip src">'+esc(srcName(j))+"</span>"+
+            '<span class="chip age">'+fmtAge(a)+"</span>"+
+            (yrs!=null ? '<span class="chip">يطلب '+AR.format(yrs)+" سنة خبرة</span>" : "")+
+            (isNew ? '<span class="chip new">جديد</span>' : "")+
+          "</div></div>"+
+        '<button class="expand" type="button" aria-label="تفاصيل">▾</button>'+
+      "</div>"+
+      '<div class="detail">'+
+        '<div class="detail-grid">'+
+          '<div><p class="dl">من أين جاءت الدرجة</p><div class="bd">'+
+            bdRow("المسمى الوظيفي", bd.title)+
+            bdRow("تغطية المهارات", bd.skills)+
+            bdRow("مستوى الخبرة", bd.seniority)+
+            bdRow("الموقع", bd.location)+
+            bdRow("حداثة الإعلان", bd.freshness)+
+          "</div>"+
+          (bd.thin ? '<p class="note" style="color:var(--amber)">وصف الإعلان لم يُجلب لهذا الشاغر، '+
+            'فاستُبعد معيار المهارات وأُعيد توزيع الأوزان على المعايير الأربعة الباقية بدل احتسابه صفرًا.</p>' : "")+
+          (bd.seniority && bd.seniority.note ? '<p class="note">'+esc(bd.seniority.note)+"</p>" : "")+
+          '<p class="note" style="color:var(--ink-3)">'+esc(b.note)+"</p></div>"+
+          '<div>'+(skills ? '<p class="dl">مهارات من سيرتك ظهرت في الإعلان</p><div class="skills">'+skills+"</div>" : "")+
+            (gaps ? '<p class="dl" style="margin-top:14px">مجالات لم يذكرها الإعلان</p><div class="skills">'+gaps+"</div>" : "")+
+          "</div>"+
+        "</div>"+
+        (j.description ? '<div class="excerpt">'+esc(String(j.description).slice(0,1400))+"</div>" : "")+
+        '<div class="actions">'+
+          '<a class="btn" href="'+esc(j.url)+'" target="_blank" rel="noopener">فتح الإعلان والتقديم</a>'+
+          (alt ? '<span class="chip">منشور أيضًا على:</span>'+alt : "")+
+        "</div>"+
+      "</div></article>";
+  }
+
+  function draw(){
+    const rows = apply();
+    const list = document.getElementById("list");
+    document.getElementById("countNote").textContent =
+      AR.format(rows.length) + " من " + AR.format(jobs.length) + " شاغر";
+    if(!rows.length){
+      list.innerHTML = '<div class="empty">لا شواغر تطابق هذه المرشّحات.<br>جرّب توسيع نطاق المدينة أو الفترة الزمنية.</div>';
+      return;
+    }
+    if(state.sort !== "score"){
+      list.innerHTML = '<div class="rows">'+rows.map(card).join("")+"</div>";
+    } else {
+      let html = "";
+      for(const b of BANDS){
+        const grp = rows.filter(j => band(j.score).key === b.key);
+        if(!grp.length) continue;
+        html += '<div class="band"><h2>'+b.key+'</h2><span class="qty">'+AR.format(grp.length)+
+          '</span><span class="rule"></span></div><div class="rows">'+grp.map(card).join("")+"</div>";
+      }
+      const rest = rows.filter(j => !BANDS.some(b => band(j.score).key === b.key));
+      if(rest.length) html += '<div class="band"><h2>دون العتبة</h2><span class="qty">'+
+        AR.format(rest.length)+'</span><span class="rule"></span></div><div class="rows">'+
+        rest.map(card).join("")+"</div>";
+      list.innerHTML = html;
+    }
+  }
+
+  // ------------------------------------------------------------- tiles
+  function tiles(){
+    const fresh = jobs.filter(j => (ageDays(j) ?? 99) <= 1).length;
+    const strong = jobs.filter(j => j.score >= 58).length;
+    const top = jobs.length ? Math.max.apply(null, jobs.map(j=>j.score)) : 0;
+    const srcOk = Object.entries(DATA.per_source||{}).filter(([,n]) => n > 0).length;
+    const srcAll = Object.keys(DATA.per_source||{}).length;
+    const t = [
+      {k:"شواغر مفتوحة", v:AR.format(jobs.length), n:"بعد إزالة التكرار بين المصادر"},
+      {k:"مرشّح قوي فأعلى", v:AR.format(strong), n:"درجة ٥٨ فما فوق", hi:true},
+      {k:"نُشر خلال ٢٤ ساعة", v:AR.format(fresh), n:"حسب تاريخ النشر المعلن"},
+      {k:"أعلى درجة مطابقة", v:top.toFixed(0), n:"من ١٠٠"},
+      srcAll
+        ? {k:"مصادر أنتجت بيانات", v:AR.format(srcOk)+"/"+AR.format(srcAll), n:"في آخر تشغيل"}
+        : {k:"الجمع الآلي", v:"—", n:"لم يُشغَّل بعد"}
+    ];
+    document.getElementById("stats").innerHTML = t.map(x =>
+      '<div class="tile'+(x.hi?" hi":"")+'"><div class="k">'+x.k+'</div><div class="v">'+x.v+
+      '</div><div class="n">'+x.n+"</div></div>").join("");
+  }
+
+  // -------------------------------------------------------- side panels
+  function restricted(){
+    const plats = ((DATA.sources||{}).platforms)||[];
+    const r = plats.filter(p => p.tier === 3);
+    if(!r.length){ document.getElementById("restricted").style.display="none"; return; }
+    let html = "<h2>مصادر تُفتح يدويًا</h2><p class=\"lede\">"+
+      "لِنكدإن وإنديد يمنعان الجمع الآلي في شروط الاستخدام ويحجبان عناوين الخوادم السحابية، "+
+      "فلا يجمعهما المحرك آليًا. بدلًا من ذلك يولّد روابط بحث مضبوطة مسبقًا على تخصصك ومدنك وفترة النشر — "+
+      "افتحها من متصفحك بحسابك.</p>";
+    for(const p of r){
+      html += '<p class="dl" style="margin-top:14px">'+esc(p.name_ar)+"</p><div class=\"link-grid\">"+
+        (p.saved_searches||[]).map(s =>
+          '<a class="link-card" href="'+esc(s.url)+'" target="_blank" rel="noopener">'+
+          '<span>'+esc(s.label)+'</span><span class="arrow">↗</span></a>').join("")+"</div>";
+    }
+    document.getElementById("restricted").innerHTML = html;
+  }
+
+  function health(){
+    const per = DATA.per_source||{}, errs = DATA.errors||{};
+    const keys = [...new Set([...Object.keys(per), ...Object.keys(errs)])].sort();
+    let rows = keys.map(k => {
+      const n = per[k]||0, e = errs[k];
+      const cls = e ? "warn" : n > 0 ? "ok" : "off";
+      const status = e ? "خطأ" : n > 0 ? "يعمل" : "بدون نتائج";
+      return "<tr><td><span class=\"dot "+cls+"\"></span>"+esc(k)+"</td><td class=\"n\">"+AR.format(n)+
+        "</td><td>"+status+"</td><td style=\"color:var(--ink-3);font-size:11.5px\">"+esc(e||"")+"</td></tr>";
+    }).join("");
+    if(!rows) rows = '<tr><td colspan="4" style="color:var(--ink-3)">لم يُسجَّل تشغيل جمع بعد.</td></tr>';
+    document.getElementById("health").innerHTML =
+      "<h2>حالة المصادر</h2><p class=\"lede\">كل مصدر وما أنتجه في آخر تشغيل. "+
+      "المصدر الذي يظهر «خطأ» لم يُسقَط من المحرك — يُعاد محاولته في التشغيل التالي ويُسجَّل سبب الفشل هنا.</p>"+
+      '<div class="scroll-x"><table class="health"><thead><tr><th>المصدر</th><th>عدد الشواغر</th>'+
+      "<th>الحالة</th><th>الملاحظة</th></tr></thead><tbody>"+rows+"</tbody></table></div>";
+  }
+
+  // -------------------------------------------------------------- wire up
+  document.getElementById("q").addEventListener("input", e => {
+    state.q = e.target.value; persist(); draw();
+  });
+  cityEl.addEventListener("change", e => { state.city = e.target.value; persist(); draw(); });
+  srcEl.addEventListener("change", e => { state.source = e.target.value; persist(); draw(); });
+  document.getElementById("sort").addEventListener("change", e => {
+    state.sort = e.target.value; persist(); draw();
+  });
+  document.querySelectorAll("[data-age]").forEach(b => b.addEventListener("click", () => {
+    state.age = b.dataset.age; persist();
+    document.querySelectorAll("[data-age]").forEach(x =>
+      x.setAttribute("aria-pressed", String(x === b)));
+    draw();
+  }));
+  document.addEventListener("click", e => {
+    const head = e.target.closest(".row-head");
+    if(!head) return;
+    const row = head.closest(".row");
+    row.toggleAttribute("open");
+  });
+  document.addEventListener("keydown", e => {
+    if(e.key !== "Enter" && e.key !== " ") return;
+    const head = e.target.closest(".row-head");
+    if(!head) return;
+    e.preventDefault();
+    head.closest(".row").toggleAttribute("open");
+  });
+
+  const gen = new Date(DATA.generated_at);
+  document.getElementById("stamp").textContent = "آخر تحديث " +
+    (isNaN(gen) ? DATA.generated_at
+      : gen.toLocaleString("ar-SA-u-ca-gregory", {dateStyle:"medium", timeStyle:"short"}));
+  document.getElementById("foot").innerHTML =
+    "يعمل المحرك على جدولة يومية ويقارن كل شاغر بسيرة عبدالسلام الفيفي عبر خمسة معايير موزونة: "+
+    "المسمى (٣٠) وتغطية المهارات (٣٥) ومستوى الخبرة (١٥) والموقع (١٢) وحداثة الإعلان (٨). "+
+    "الدرجة تفسيرية لا قاطعة — راجع الإعلان الأصلي قبل التقديم.";
+
+  if(DATA.notice){
+    document.getElementById("notice").innerHTML =
+      '<div class="notice-bar"><strong>حالة البيانات</strong><span>'+esc(DATA.notice)+"</span></div>";
+  }
+
+  tiles(); restricted(); health(); draw();
+})();
+</script>
+</body>
+</html>

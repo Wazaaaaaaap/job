@@ -1,0 +1,35 @@
+{
+  "_note": "دفعة أولية جُمعت يدويًا من قوائم صبار العامة بتاريخ 2026-08-27، قبل تشغيل المحرك الآلي لأول مرة. لا تحتوي أوصاف الإعلانات، لذلك تُحسب درجاتها على المسمى والموقع ومستوى الخبرة والحداثة فقط. سيستبدلها أول تشغيل مجدول ببيانات مجموعة آليًا مع الأوصاف الكاملة.",
+  "collected_on": "2026-08-27",
+  "listing_sources": {
+    "riyadh_ie": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer",
+    "ksa_ie": "https://sabbar.com/en/jobs/r-industrial-engineer",
+    "latest": "https://sabbar.com/en/jobs"
+  },
+  "jobs": [
+    {"title": "Industrial Engineer", "company": "شركة هداية للصناعات المعدنية", "location": "Riyadh", "days_ago": 11, "url": "https://sabbar.com/en/jobs/c-riyadh-r-industrial-engineer/id-dbee6fc3-3d6d-4e69-8980-d09b8445b762", "listing": "riyadh_ie"},
+    {"title": "MRP Controller and Planning Engineer", "company": "Sulzer", "location": "Riyadh", "days_ago": 13, "url": "https://sabbar.com/en/jobs/c-riyadh-r-mrp-controller-and-planning-engineer/id-05aec5eb-ca2e-4132-abce-293382a616df", "listing": "riyadh_ie"},
+    {"title": "Manufacturing Engineering Expert", "company": "Nextpower", "location": "Riyadh", "days_ago": 13, "url": "https://sabbar.com/en/jobs/c-riyadh-r-manufacturing-engineering-expert/id-545b116e-8e2a-4c92-8ec3-43baa79a2aa8", "listing": "riyadh_ie"},
+    {"title": "Planning Engineer", "company": "MEMF Electrical Industries Co", "location": "Riyadh", "days_ago": 19, "url": "https://sabbar.com/en/jobs/c-riyadh-r-planning-engineer/id-ffec86bb-4b0c-43d1-b10a-204d44db90b9", "listing": "riyadh_ie"},
+    {"title": "Planning Engineer", "company": "RPC Co.", "location": "Riyadh", "days_ago": 21, "url": "https://sabbar.com/en/jobs/c-riyadh-r-planning-engineer/id-047eac11-dddd-4ae4-a299-3ed9a81f490f", "listing": "riyadh_ie"},
+    {"title": "Procurement Engineer", "company": "HanmiGlobal MENA", "location": "Riyadh", "days_ago": 10, "url": "https://sabbar.com/en/jobs/c-riyadh-r-procurement-engineer/id-45770a37-9ea2-4362-a1f6-6932f136f167", "listing": "riyadh_ie"},
+    {"title": "Quality Engineer", "company": "Nextpower", "location": "Riyadh", "days_ago": 13, "url": "https://sabbar.com/en/jobs/c-riyadh-r-quality-engineer/id-1d467c77-7955-4357-851e-0412a2942674", "listing": "riyadh_ie"},
+    {"title": "Supplier Quality Engineer", "company": "Nextpower", "location": "Riyadh", "days_ago": 13, "url": "https://sabbar.com/en/jobs/c-riyadh-r-supplier-quality-engineer/id-eeb78e81-c182-405e-9206-69683aa6ac50", "listing": "riyadh_ie"},
+    {"title": "Quality Engineer", "company": "AtkinsRéalis", "location": "Riyadh", "days_ago": 26, "url": "https://sabbar.com/en/jobs/c-riyadh-r-quality-engineer/id-c9c4cb1b-fbef-468a-b12a-a1b2366657df", "listing": "riyadh_ie"},
+    {"title": "Quality Engineer", "company": "WSP in the Middle East", "location": "Riyadh", "days_ago": 26, "url": "https://sabbar.com/en/jobs/c-riyadh-r-quality-engineer/id-1678ca92-4eaa-41e0-9fc0-0ce28b9c5a6d", "listing": "riyadh_ie"},
+    {"title": "ISG Staff Manufacturing Engineer", "company": "Lenovo", "location": "Riyadh", "days_ago": 22, "url": "https://sabbar.com/en/jobs/c-riyadh-r-isg-staff-manufacturing-engineer/id-0d9a6492-e180-40b1-9315-657e02ca39d0", "listing": "riyadh_ie"},
+    {"title": "Field Application Engineer", "company": "HQTS Group", "location": "Riyadh", "days_ago": 11, "url": "https://sabbar.com/en/jobs/c-riyadh-r-field-application-engineer/id-2bed8386-9cb3-4d10-936e-fa9734204d3a", "listing": "riyadh_ie"},
+    {"title": "Technical Engineer", "company": "Brand Aid Marketing Solutions", "location": "Riyadh", "days_ago": 5, "url": "https://sabbar.com/en/jobs/c-riyadh-r-technical-engineer/id-f51e197f-c54a-44eb-bda8-39d43a1bf8d9", "listing": "riyadh_ie"},
+    {"title": "Technical Planner", "company": "flyadeal", "location": "Saudi Arabia", "days_ago": 4, "url": "https://sabbar.com/en/jobs/r-technical-planner/id-e3106a78-2021-46fa-8c03-0f20f2798412", "listing": "ksa_ie"},
+    {"title": "Sr Planner IV TAM planning", "company": "TASNEE", "location": "Al Jubail", "days_ago": 4, "url": "https://sabbar.com/en/jobs/c-al-jubail-r-sr-planner-iv-tam-planning-job/id-4d71ef8a-2bd9-49a5-9500-f26604dd21bb", "listing": "ksa_ie"},
+    {"title": "Project Management Engineer", "company": "يوكوجاوا للخدمات العربية السعودية", "location": "Al Jubail", "days_ago": 4, "url": "https://sabbar.com/en/jobs/c-al-jubail-r-project-management-engineer/id-59016346-54d0-4aa5-99f6-21befde9007e", "listing": "ksa_ie"},
+    {"title": "Quality Inspector", "company": "GE Vernova", "location": "Dammam", "days_ago": 4, "url": "https://sabbar.com/en/jobs/c-dammam-r-quality-inspector/id-662a28b0-1c5c-4b1d-a752-79f4e9819fe0", "listing": "ksa_ie"},
+    {"title": "Quality Control Supervisor", "company": "Target Engineering Construction Co", "location": "Al Khobar", "days_ago": 4, "url": "https://sabbar.com/en/jobs/c-al-khobar-r-quality-control-supervisor/id-1dee13b1-1810-49d1-8544-fa21e35fd452", "listing": "ksa_ie"},
+    {"title": "Residue Storage Area (RSA) Specialist", "company": "JAL International Co. Ltd.", "location": "Saudi Arabia", "days_ago": 4, "url": "https://sabbar.com/en/jobs/r-residue-storage-area-rsa-specialist/id-04ebf03a-8b29-4d4c-bca3-8ee78317228b", "listing": "ksa_ie"},
+    {"title": "Quality Controller", "company": "نبني", "location": "Al Baha", "days_ago": 4, "url": "https://sabbar.com/en/jobs/c-al-baha-r-quality-controller/id-d29ee935-9df3-4316-b7f9-56797593058c", "listing": "ksa_ie"},
+    {"title": "Junior Application Engineer CMD", "company": "Zahid Tractor", "location": "Saudi Arabia", "days_ago": 0, "url": "https://sabbar.com/en/jobs/r-junior-application-engineer-cmd/id-e13fbfa2-6a07-4f4f-94e0-f93f31b25530", "listing": "latest"},
+    {"title": "Head of Procurement", "company": "Starlinks", "location": "Saudi Arabia", "days_ago": 0, "url": "https://sabbar.com/en/jobs/r-head-of-procurement/id-14cfa865-2d92-4fda-828c-ae61b36a6911", "listing": "latest"},
+    {"title": "Data Management Specialist", "company": "Masterworks", "location": "Saudi Arabia", "days_ago": 0, "url": "https://sabbar.com/en/jobs/r-data-management-specialist/id-5d751427-e8f2-47bd-a05c-01c502c95cfe", "listing": "latest"},
+    {"title": "IT Operations Specialist", "company": "AQS-PEPSI", "location": "Abha", "days_ago": 3, "url": "https://sabbar.com/en/jobs/c-abha-r-it-operations-specialist/id-6a3522be-bbab-4bf5-9b2e-9b18b5b2f225", "listing": "ksa_ie"}
+  ]
+}

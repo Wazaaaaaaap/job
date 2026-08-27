@@ -1,0 +1,152 @@
+# Platform-level sources (national portals + aggregators), separate from the
+# per-employer registry in companies.yaml.
+#
+# tier:
+#   1 = structured API, no browser needed, high reliability
+#   2 = JavaScript portal harvested with Playwright (XHR interception first)
+#   3 = restricted by anti-bot / terms of service; NOT auto-collected.
+#       Handled as generated saved-search links, or via `local_mode` on a
+#       personal machine and browser profile.
+#
+# run.py records how many postings each source produced and any error it raised;
+# the dashboard's "حالة المصادر" panel reads that, so a source that quietly
+# stopped working is visible rather than silently missing.
+
+platforms:
+  - id: jadarat
+    name_ar: جدارات
+    name_en: Jadarat (national employment platform)
+    family: jadarat
+    tier: 2
+    enabled: true
+    url: "https://jadarat.sa/jobs?page={page1}"
+    url_base: "https://jadarat.sa"
+    pages: 5
+    settle_ms: 6000
+    scrolls: 4
+    locale: "ar-SA"
+    default_company: "جهة معلنة على جدارات"
+    notes: >
+      Angular SPA. The collector intercepts its XHR JSON rather than relying on
+      DOM selectors. Some listings on Jadarat require an authenticated Absher /
+      NIC session; those appear as titles without full descriptions and are
+      scored on title + location only.
+
+  - id: sabbar
+    name_ar: صبار
+    name_en: Sabbar
+    family: sabbar
+    tier: 2
+    enabled: true
+    url: "https://sabbar.com/jobs?page={page1}"
+    url_base: "https://sabbar.com"
+    pages: 3
+    settle_ms: 5000
+    locale: "ar-SA"
+    default_company: "جهة معلنة على صبار"
+    notes: >
+      Primarily hourly / temporary and field roles. Kept enabled because it also
+      carries warehouse, inventory and operations shifts, but expect a lower
+      average match score than the ATS sources.
+
+  - id: taqat
+    name_ar: طاقات
+    name_en: Taqat (HRDF)
+    family: taqat
+    tier: 2
+    enabled: true
+    url: "https://www.taqat.sa/web/guest/job-search?page={page1}"
+    url_base: "https://www.taqat.sa"
+    pages: 3
+    settle_ms: 5000
+    locale: "ar-SA"
+    default_company: "جهة معلنة على طاقات"
+
+  - id: qiwa
+    name_ar: قوى
+    name_en: Qiwa jobs
+    family: qiwa
+    tier: 2
+    enabled: false
+    url: "https://www.qiwa.sa/en/jobs"
+    url_base: "https://www.qiwa.sa"
+    notes: Requires authentication for most listings; disabled by default.
+
+  - id: bayt
+    name_ar: بيت.كوم
+    name_en: Bayt
+    family: aggregator
+    tier: 2
+    enabled: true
+    url: "https://www.bayt.com/en/saudi-arabia/jobs/?page={page1}"
+    url_base: "https://www.bayt.com"
+    pages: 4
+    settle_ms: 4000
+    notes: Emits schema.org JobPosting JSON-LD on listing pages.
+
+  - id: gulftalent
+    name_ar: جلف تالنت
+    name_en: GulfTalent
+    family: aggregator
+    tier: 2
+    enabled: true
+    url: "https://www.gulftalent.com/saudi-arabia/jobs/engineering-jobs-2?page={page1}"
+    url_base: "https://www.gulftalent.com"
+    pages: 3
+
+  - id: tanqeeb
+    name_ar: تنقيب
+    name_en: Tanqeeb
+    family: aggregator
+    tier: 2
+    enabled: true
+    url: "https://saudi.tanqeeb.com/jobs?page={page1}"
+    url_base: "https://saudi.tanqeeb.com"
+    pages: 3
+    locale: "ar-SA"
+
+  - id: wadhefa
+    name_ar: وظيفة.كوم
+    name_en: Wadhefa
+    family: aggregator
+    tier: 2
+    enabled: true
+    url: "https://www.wadhefa.com/jobs?page={page1}"
+    url_base: "https://www.wadhefa.com"
+    pages: 2
+    locale: "ar-SA"
+
+  # ------------------------------------------------------------------ tier 3
+  - id: linkedin
+    name_ar: لِنكدإن
+    name_en: LinkedIn
+    family: restricted
+    tier: 3
+    enabled: false
+    local_mode: true
+    reason_ar: >
+      لِنكدإن يمنع الجمع الآلي في شروط الاستخدام ويحجب عناوين مراكز البيانات
+      (وهي ما تعمل عليه GitHub Actions). لا يُجمع آليًا في التشغيل السحابي.
+    saved_searches:
+      - {label: "مهندس صناعي — الرياض", url: "https://www.linkedin.com/jobs/search/?keywords=Industrial%20Engineer&location=Riyadh%2C%20Saudi%20Arabia&f_TPR=r86400&f_E=1%2C2"}
+      - {label: "سلسلة إمداد — الرياض", url: "https://www.linkedin.com/jobs/search/?keywords=Supply%20Chain&location=Riyadh%2C%20Saudi%20Arabia&f_TPR=r86400&f_E=1%2C2"}
+      - {label: "مهندس صناعي — المنطقة الشرقية", url: "https://www.linkedin.com/jobs/search/?keywords=Industrial%20Engineer&location=Eastern%20Province%2C%20Saudi%20Arabia&f_TPR=r86400&f_E=1%2C2"}
+      - {label: "عمليات/تخطيط — جازان", url: "https://www.linkedin.com/jobs/search/?keywords=Operations%20OR%20Planning&location=Jazan%2C%20Saudi%20Arabia&f_TPR=r604800"}
+      - {label: "برامج الخريجين — السعودية", url: "https://www.linkedin.com/jobs/search/?keywords=Graduate%20Program%20OR%20Fresh%20Graduate&location=Saudi%20Arabia&f_TPR=r604800&f_E=1"}
+      - {label: "مشتريات/لوجستيات — السعودية", url: "https://www.linkedin.com/jobs/search/?keywords=Procurement%20OR%20Logistics&location=Saudi%20Arabia&f_TPR=r86400&f_E=1%2C2"}
+
+  - id: indeed
+    name_ar: إنديد
+    name_en: Indeed
+    family: restricted
+    tier: 3
+    enabled: false
+    local_mode: true
+    reason_ar: >
+      إنديد أغلق واجهة الناشرين العامة ويستخدم حماية ضد الآليات؛ الجمع الآلي
+      السحابي غير موثوق وغير متوافق مع شروطه.
+    saved_searches:
+      - {label: "مهندس صناعي — السعودية (آخر 24 ساعة)", url: "https://sa.indeed.com/jobs?q=industrial+engineer&l=Saudi+Arabia&fromage=1"}
+      - {label: "سلسلة إمداد — الرياض", url: "https://sa.indeed.com/jobs?q=supply+chain&l=Riyadh&fromage=3"}
+      - {label: "مهندس صناعي — جازان", url: "https://sa.indeed.com/jobs?q=%D9%85%D9%87%D9%86%D8%AF%D8%B3+%D8%B5%D9%86%D8%A7%D8%B9%D9%8A&l=Jazan&fromage=7"}
+      - {label: "عمليات/جودة — الدمام", url: "https://sa.indeed.com/jobs?q=operations+OR+quality+engineer&l=Dammam&fromage=3"}
