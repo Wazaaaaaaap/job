@@ -1,0 +1,94 @@
+name: daily-radar
+
+on:
+  schedule:
+    # 04:30 UTC = 07:30 صباحًا بتوقيت السعودية
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "نمط التشغيل"
+        required: false
+        default: full
+        type: choice
+        options: [full, apis-only]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: radar
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - name: 1. سحب المستودع
+        uses: actions/checkout@v4
+
+      - name: 2. تجهيز بايثون
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 3. تثبيت المكتبات
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 4. تثبيت متصفح Playwright
+        if: ${{ github.event.inputs.mode != 'apis-only' }}
+        run: python -m playwright install --with-deps chromium
+
+      - name: 5. اكتشاف بوابات التوظيف للشركات
+        run: python scripts/discover_ats.py
+        continue-on-error: true
+
+      - name: 6. الجمع والمطابقة وبناء اللوحة
+        env:
+          RADAR_STALE_DAYS: "12"
+        run: |
+          if [ "${{ github.event.inputs.mode }}" = "apis-only" ]; then
+            python run.py --apis-only
+          else
+            python run.py --all
+          fi
+
+      - name: 7. حفظ النتائج في المستودع
+        run: |
+          git config user.name  "ksa-job-radar"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data docs config/companies.yaml
+          git diff --staged --quiet || git commit -m "تحديث يومي $(date -u +%F)"
+          git push
+
+      - name: 8. تجهيز النشر
+        uses: actions/configure-pages@v5
+
+      - name: 9. رفع اللوحة
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: 10. نشر اللوحة
+        id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: 11. حفظ نسخة من البيانات للتشخيص
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: radar-data
+          path: |
+            data/latest.json
+            data/discovery_report.json
+          retention-days: 14
+          if-no-files-found: warn
