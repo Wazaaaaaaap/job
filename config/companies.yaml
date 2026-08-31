@@ -181,7 +181,8 @@ discover:
   name_ar: مجموعة تامر
   careers_url: https://www.tamergroup.com/careers
   sector: healthcare_supply
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'ConnectionError: (''Connection aborted.'', ConnectionResetError(104,
+    ''Connection reset by peer''))'
 - id: bahri
   name: Bahri
   name_ar: البحري
