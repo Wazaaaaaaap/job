@@ -97,7 +97,9 @@ discover:
   name_ar: السعودية للكهرباء
   careers_url: https://www.se.com.sa/en-us/Careers
   sector: utilities
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'ConnectTimeout: HTTPSConnectionPool(host=''www.se.com.sa'', port=443):
+    Max retries exceeded with url: /en-us/Careers (Caused by ConnectTimeoutError(<HTTPSConnection(host=''www.se.com.sa'',
+    port='
 - id: neom
   name: NEOM
   name_ar: نيوم
@@ -181,8 +183,7 @@ discover:
   name_ar: مجموعة تامر
   careers_url: https://www.tamergroup.com/careers
   sector: healthcare_supply
-  last_error: 'ConnectionError: (''Connection aborted.'', ConnectionResetError(104,
-    ''Connection reset by peer''))'
+  last_error: no known ATS fingerprint on careers page
 - id: bahri
   name: Bahri
   name_ar: البحري
@@ -387,7 +388,9 @@ discover:
   name_ar: د. سليمان الحبيب
   careers_url: https://hmg.com/en/careers
   sector: healthcare
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'ConnectTimeout: HTTPSConnectionPool(host=''hmg.com'', port=443): Max
+    retries exceeded with url: /en/careers (Caused by ConnectTimeoutError(<HTTPSConnection(host=''hmg.com'',
+    port=443) at 0x7fce8'
 - id: mouwasat
   name: Mouwasat Medical
   name_ar: المواساة

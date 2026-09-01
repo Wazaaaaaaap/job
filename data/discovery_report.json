@@ -46,8 +46,8 @@
   ],
   [
     "sec",
-    "no-ats",
-    ""
+    "unreachable",
+    "ConnectTimeout: HTTPSConnectionPool(host='www.se.com.sa', port=443): M"
   ],
   [
     "neom",
@@ -111,8 +111,8 @@
   ],
   [
     "tamer",
-    "unreachable",
-    "ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Co"
+    "no-ats",
+    ""
   ],
   [
     "bahri",
@@ -271,8 +271,8 @@
   ],
   [
     "dr_sulaiman",
-    "no-ats",
-    ""
+    "unreachable",
+    "ConnectTimeout: HTTPSConnectionPool(host='hmg.com', port=443): Max ret"
   ],
   [
     "mouwasat",

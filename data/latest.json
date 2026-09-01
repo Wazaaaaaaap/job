@@ -1,6 +1,6 @@
 {
  "notice": null,
- "generated_at": "2026-08-31T11:10:07+00:00",
+ "generated_at": "2026-09-01T09:41:06+00:00",
  "jobs": [
   {
    "uid": "9cd9856b5d7da0aa",
@@ -1323,6 +1323,15 @@
  ],
  "runs": [
   {
+   "id": 7,
+   "started_at": "2026-09-01T09:35:54+00:00",
+   "finished_at": "2026-09-01T09:41:06+00:00",
+   "collected": 0,
+   "new": 0,
+   "errors": "{\"ROSHN\": \"RuntimeError: request failed after 3 attempts: GET https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions -> HTTPError: 403 Client Error: Forbidden for url: https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList.secondaryLocations&finder=findReqs%3BsiteNumber%3DCX_1%2Climit%3D25%2Coffset%3D0%2CsortBy%3DPOSTING_DATES_DESC\"}",
+   "per_source": "{\"almarai\": 0, \"Public Investment Fund\": 0, \"ROSHN\": 0, \"jadarat\": 0, \"sabbar\": 0, \"taqat\": 0, \"bayt\": 0, \"gulftalent\": 0, \"tanqeeb\": 0, \"wadhefa\": 0}"
+  },
+  {
    "id": 6,
    "started_at": "2026-08-31T11:04:54+00:00",
    "finished_at": "2026-08-31T11:10:07+00:00",
@@ -2205,7 +2214,7 @@
     "name_ar": "السعودية للكهرباء",
     "careers_url": "https://www.se.com.sa/en-us/Careers",
     "sector": "utilities",
-    "last_error": "no known ATS fingerprint on careers page"
+    "last_error": "ConnectTimeout: HTTPSConnectionPool(host='www.se.com.sa', port=443): Max retries exceeded with url: /en-us/Careers (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.se.com.sa', port="
    },
    {
     "id": "neom",
@@ -2309,7 +2318,7 @@
     "name_ar": "مجموعة تامر",
     "careers_url": "https://www.tamergroup.com/careers",
     "sector": "healthcare_supply",
-    "last_error": "ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"
+    "last_error": "no known ATS fingerprint on careers page"
    },
    {
     "id": "bahri",
@@ -2565,7 +2574,7 @@
     "name_ar": "د. سليمان الحبيب",
     "careers_url": "https://hmg.com/en/careers",
     "sector": "healthcare",
-    "last_error": "no known ATS fingerprint on careers page"
+    "last_error": "ConnectTimeout: HTTPSConnectionPool(host='hmg.com', port=443): Max retries exceeded with url: /en/careers (Caused by ConnectTimeoutError(<HTTPSConnection(host='hmg.com', port=443) at 0x7fce8"
    },
    {
     "id": "mouwasat",
