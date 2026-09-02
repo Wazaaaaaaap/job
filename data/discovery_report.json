@@ -46,8 +46,8 @@
   ],
   [
     "sec",
-    "unreachable",
-    "ConnectTimeout: HTTPSConnectionPool(host='www.se.com.sa', port=443): M"
+    "no-ats",
+    ""
   ],
   [
     "neom",
@@ -271,8 +271,8 @@
   ],
   [
     "dr_sulaiman",
-    "unreachable",
-    "ConnectTimeout: HTTPSConnectionPool(host='hmg.com', port=443): Max ret"
+    "no-ats",
+    ""
   ],
   [
     "mouwasat",
