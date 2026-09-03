@@ -79,7 +79,8 @@ discover:
   name_ar: ينساب
   careers_url: https://www.yansab.com.sa/en/careers
   sector: petrochemical
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'ReadTimeout: HTTPSConnectionPool(host=''www.yansab.com.sa'', port=443):
+    Read timed out. (read timeout=30)'
 - id: petrorabigh
   name: Petro Rabigh
   name_ar: بترورابغ
