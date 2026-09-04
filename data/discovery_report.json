@@ -31,8 +31,8 @@
   ],
   [
     "yansab",
-    "unreachable",
-    "ReadTimeout: HTTPSConnectionPool(host='www.yansab.com.sa', port=443): "
+    "no-ats",
+    ""
   ],
   [
     "petrorabigh",
