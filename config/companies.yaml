@@ -65,15 +65,16 @@ discover:
   name_ar: التصنيع
   careers_url: https://www.tasnee.com/en/careers
   sector: petrochemical
-  last_error: 'SSLError: HTTPSConnectionPool(host=''www.tasnee.com'', port=443): Max
-    retries exceeded with url: /en/careers (Caused by SSLError(SSLCertVerificationError(1,
-    ''[SSL: CERTIFICATE_VERIFY_FAILED] c'
+  last_error: 'ConnectTimeout: HTTPSConnectionPool(host=''www.tasnee.com'', port=443):
+    Max retries exceeded with url: /en/careers (Caused by ConnectTimeoutError(<HTTPSConnection(host=''www.tasnee.com'',
+    port=4'
 - id: advanced
   name: Advanced Petrochemical
   name_ar: المتقدمة للبتروكيماويات
   careers_url: https://www.apc.com.sa/careers
   sector: petrochemical
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'ConnectionError: (''Connection aborted.'', ConnectionResetError(104,
+    ''Connection reset by peer''))'
 - id: yansab
   name: Yansab
   name_ar: ينساب
