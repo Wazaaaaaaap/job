@@ -22,12 +22,12 @@
   [
     "tasnee",
     "unreachable",
-    "ConnectTimeout: HTTPSConnectionPool(host='www.tasnee.com', port=443): "
+    "SSLError: HTTPSConnectionPool(host='www.tasnee.com', port=443): Max re"
   ],
   [
     "advanced",
-    "unreachable",
-    "ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Co"
+    "no-ats",
+    ""
   ],
   [
     "yansab",
