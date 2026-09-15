@@ -161,7 +161,9 @@ discover:
   name_ar: حلواني إخوان
   careers_url: https://www.halwanibros.com/careers
   sector: fmcg
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'SSLError: HTTPSConnectionPool(host=''www.halwanibros.com'', port=443):
+    Max retries exceeded with url: /careers (Caused by SSLError(SSLCertVerificationError(1,
+    ''[SSL: CERTIFICATE_VERIFY_FAILED]'
 - id: spimaco
   name: SPIMACO
   name_ar: سبيماكو
@@ -350,7 +352,8 @@ discover:
   name_ar: مصرف الراجحي
   careers_url: https://www.alrajhibank.com.sa/en/careers
   sector: banking
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'ConnectTimeout: HTTPSConnectionPool(host=''www.alrajhibank.com.sa'',
+    port=443): Max retries exceeded with url: /en/careers (Caused by ConnectTimeoutError(<HTTPSConnection(host=''www.alrajhibank'
 - id: snb
   name: Saudi National Bank
   name_ar: البنك الأهلي السعودي

@@ -96,8 +96,8 @@
   ],
   [
     "halwani",
-    "no-ats",
-    ""
+    "unreachable",
+    "SSLError: HTTPSConnectionPool(host='www.halwanibros.com', port=443): M"
   ],
   [
     "spimaco",
@@ -246,8 +246,8 @@
   ],
   [
     "alrajhi",
-    "no-ats",
-    ""
+    "unreachable",
+    "ConnectTimeout: HTTPSConnectionPool(host='www.alrajhibank.com.sa', por"
   ],
   [
     "snb",
