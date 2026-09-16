@@ -1,8 +1,17 @@
 {
  "notice": null,
- "generated_at": "2026-09-15T09:40:22+00:00",
+ "generated_at": "2026-09-16T09:32:35+00:00",
  "jobs": [],
  "runs": [
+  {
+   "id": 22,
+   "started_at": "2026-09-16T09:27:23+00:00",
+   "finished_at": "2026-09-16T09:32:35+00:00",
+   "collected": 0,
+   "new": 0,
+   "errors": "{\"ROSHN\": \"RuntimeError: request failed after 3 attempts: GET https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions -> HTTPError: 403 Client Error: Forbidden for url: https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList.secondaryLocations&finder=findReqs%3BsiteNumber%3DCX_1%2Climit%3D25%2Coffset%3D0%2CsortBy%3DPOSTING_DATES_DESC\"}",
+   "per_source": "{\"almarai\": 0, \"Public Investment Fund\": 0, \"ROSHN\": 0, \"jadarat\": 0, \"sabbar\": 0, \"taqat\": 0, \"bayt\": 0, \"gulftalent\": 0, \"tanqeeb\": 0, \"wadhefa\": 0}"
+  },
   {
    "id": 21,
    "started_at": "2026-09-15T09:35:10+00:00",
@@ -115,15 +124,6 @@
    "id": 9,
    "started_at": "2026-09-03T09:07:49+00:00",
    "finished_at": "2026-09-03T09:13:00+00:00",
-   "collected": 0,
-   "new": 0,
-   "errors": "{\"ROSHN\": \"RuntimeError: request failed after 3 attempts: GET https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions -> HTTPError: 403 Client Error: Forbidden for url: https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList.secondaryLocations&finder=findReqs%3BsiteNumber%3DCX_1%2Climit%3D25%2Coffset%3D0%2CsortBy%3DPOSTING_DATES_DESC\"}",
-   "per_source": "{\"almarai\": 0, \"Public Investment Fund\": 0, \"ROSHN\": 0, \"jadarat\": 0, \"sabbar\": 0, \"taqat\": 0, \"bayt\": 0, \"gulftalent\": 0, \"tanqeeb\": 0, \"wadhefa\": 0}"
-  },
-  {
-   "id": 8,
-   "started_at": "2026-09-02T08:57:05+00:00",
-   "finished_at": "2026-09-02T09:02:15+00:00",
    "collected": 0,
    "new": 0,
    "errors": "{\"ROSHN\": \"RuntimeError: request failed after 3 attempts: GET https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions -> HTTPError: 403 Client Error: Forbidden for url: https://fa-epph-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList.secondaryLocations&finder=findReqs%3BsiteNumber%3DCX_1%2Climit%3D25%2Coffset%3D0%2CsortBy%3DPOSTING_DATES_DESC\"}",
@@ -1278,7 +1278,7 @@
     "name_ar": "مصرف الراجحي",
     "careers_url": "https://www.alrajhibank.com.sa/en/careers",
     "sector": "banking",
-    "last_error": "ConnectTimeout: HTTPSConnectionPool(host='www.alrajhibank.com.sa', port=443): Max retries exceeded with url: /en/careers (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.alrajhibank"
+    "last_error": "no known ATS fingerprint on careers page"
    },
    {
     "id": "snb",

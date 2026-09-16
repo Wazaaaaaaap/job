@@ -352,8 +352,7 @@ discover:
   name_ar: مصرف الراجحي
   careers_url: https://www.alrajhibank.com.sa/en/careers
   sector: banking
-  last_error: 'ConnectTimeout: HTTPSConnectionPool(host=''www.alrajhibank.com.sa'',
-    port=443): Max retries exceeded with url: /en/careers (Caused by ConnectTimeoutError(<HTTPSConnection(host=''www.alrajhibank'
+  last_error: no known ATS fingerprint on careers page
 - id: snb
   name: Saudi National Bank
   name_ar: البنك الأهلي السعودي
