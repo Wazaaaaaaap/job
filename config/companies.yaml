@@ -161,9 +161,7 @@ discover:
   name_ar: حلواني إخوان
   careers_url: https://www.halwanibros.com/careers
   sector: fmcg
-  last_error: 'SSLError: HTTPSConnectionPool(host=''www.halwanibros.com'', port=443):
-    Max retries exceeded with url: /careers (Caused by SSLError(SSLCertVerificationError(1,
-    ''[SSL: CERTIFICATE_VERIFY_FAILED]'
+  last_error: no known ATS fingerprint on careers page
 - id: spimaco
   name: SPIMACO
   name_ar: سبيماكو

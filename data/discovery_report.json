@@ -96,8 +96,8 @@
   ],
   [
     "halwani",
-    "unreachable",
-    "SSLError: HTTPSConnectionPool(host='www.halwanibros.com', port=443): M"
+    "no-ats",
+    ""
   ],
   [
     "spimaco",
