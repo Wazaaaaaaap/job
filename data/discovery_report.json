@@ -186,8 +186,8 @@
   ],
   [
     "alsaif",
-    "unreachable",
-    "ReadTimeout: HTTPSConnectionPool(host='alsaifgallery.com', port=443): "
+    "no-ats",
+    ""
   ],
   [
     "alfanar",

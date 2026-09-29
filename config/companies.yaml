@@ -273,8 +273,7 @@ discover:
   name_ar: السيف غاليري
   careers_url: https://alsaifgallery.com/careers
   sector: retail
-  last_error: 'ReadTimeout: HTTPSConnectionPool(host=''alsaifgallery.com'', port=443):
-    Read timed out. (read timeout=30)'
+  last_error: no known ATS fingerprint on careers page
 - id: alfanar
   name: Alfanar
   name_ar: الفنار
