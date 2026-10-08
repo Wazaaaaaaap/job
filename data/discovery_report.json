@@ -231,8 +231,8 @@
   ],
   [
     "stc",
-    "unreachable",
-    "ReadTimeout: HTTPSConnectionPool(host='www.stc.com.sa', port=443): Rea"
+    "no-ats",
+    ""
   ],
   [
     "mobily",

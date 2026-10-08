@@ -332,8 +332,7 @@ discover:
   name_ar: إس تي سي
   careers_url: https://www.stc.com.sa/content/stc/sa/en/personal/about-stc/careers.html
   sector: telecom
-  last_error: 'ReadTimeout: HTTPSConnectionPool(host=''www.stc.com.sa'', port=443):
-    Read timed out. (read timeout=30)'
+  last_error: no known ATS fingerprint on careers page
 - id: mobily
   name: Mobily
   name_ar: موبايلي
