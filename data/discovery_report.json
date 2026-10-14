@@ -246,8 +246,8 @@
   ],
   [
     "alrajhi",
-    "no-ats",
-    ""
+    "unreachable",
+    "TooManyRedirects: Exceeded 30 redirects."
   ],
   [
     "snb",
