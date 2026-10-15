@@ -350,7 +350,7 @@ discover:
   name_ar: مصرف الراجحي
   careers_url: https://www.alrajhibank.com.sa/en/careers
   sector: banking
-  last_error: 'TooManyRedirects: Exceeded 30 redirects.'
+  last_error: no known ATS fingerprint on careers page
 - id: snb
   name: Saudi National Bank
   name_ar: البنك الأهلي السعودي
