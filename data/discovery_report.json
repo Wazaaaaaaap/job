@@ -21,8 +21,8 @@
   ],
   [
     "tasnee",
-    "no-ats",
-    ""
+    "unreachable",
+    "SSLError: HTTPSConnectionPool(host='www.tasnee.com', port=443): Max re"
   ],
   [
     "advanced",
