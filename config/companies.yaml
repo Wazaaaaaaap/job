@@ -338,8 +338,7 @@ discover:
   name_ar: موبايلي
   careers_url: https://www.mobily.com.sa/en/careers
   sector: telecom
-  last_error: 'ConnectionError: HTTPSConnectionPool(host=''www.mobily.com.sa'', port=443):
-    Max retries exceeded with url: /en/careers (Caused by NewConnectionError("HTTPSConnection(host=''www.mobily.com.sa'', '
+  last_error: no known ATS fingerprint on careers page
 - id: zain_sa
   name: Zain KSA
   name_ar: زين السعودية
