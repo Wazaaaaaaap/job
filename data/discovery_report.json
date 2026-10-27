@@ -236,8 +236,8 @@
   ],
   [
     "mobily",
-    "unreachable",
-    "ConnectionError: HTTPSConnectionPool(host='www.mobily.com.sa', port=44"
+    "no-ats",
+    ""
   ],
   [
     "zain_sa",
