@@ -324,9 +324,7 @@ discover:
   name_ar: نابكو
   careers_url: https://www.napconational.com/careers
   sector: industrial
-  last_error: 'SSLError: HTTPSConnectionPool(host=''www.napconational.com'', port=443):
-    Max retries exceeded with url: /careers (Caused by SSLError(SSLCertVerificationError(1,
-    ''[SSL: CERTIFICATE_VERIFY_FAILE'
+  last_error: no known ATS fingerprint on careers page
 - id: stc
   name: stc
   name_ar: إس تي سي

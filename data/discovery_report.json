@@ -226,8 +226,8 @@
   ],
   [
     "napco",
-    "unreachable",
-    "SSLError: HTTPSConnectionPool(host='www.napconational.com', port=443):"
+    "no-ats",
+    ""
   ],
   [
     "stc",
