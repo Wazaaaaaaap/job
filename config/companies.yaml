@@ -255,7 +255,8 @@ discover:
   name_ar: بن داود
   careers_url: https://www.bindawoodholding.com/careers
   sector: retail
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'ConnectTimeout: HTTPSConnectionPool(host=''www.bindawoodholding.com'',
+    port=443): Max retries exceeded with url: /careers (Caused by ConnectTimeoutError(<HTTPSConnection(host=''www.bindawoodhol'
 - id: jarir
   name: Jarir Bookstore
   name_ar: جرير
@@ -396,7 +397,9 @@ discover:
   name_ar: ساسرف
   careers_url: https://www.sasref.com.sa/careers
   sector: energy
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'ConnectTimeout: HTTPSConnectionPool(host=''www.sasref.com.sa'', port=443):
+    Max retries exceeded with url: /careers (Caused by ConnectTimeoutError(<HTTPSConnection(host=''www.sasref.com.sa'',
+    por'
 - id: jazan_city
   name: Jazan City for Primary and Downstream Industries
   name_ar: مدينة جازان للصناعات الأساسية
