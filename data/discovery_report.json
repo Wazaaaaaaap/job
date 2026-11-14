@@ -171,8 +171,8 @@
   ],
   [
     "bindawood",
-    "unreachable",
-    "ConnectTimeout: HTTPSConnectionPool(host='www.bindawoodholding.com', p"
+    "no-ats",
+    ""
   ],
   [
     "jarir",
@@ -281,8 +281,8 @@
   ],
   [
     "sasref",
-    "unreachable",
-    "ConnectTimeout: HTTPSConnectionPool(host='www.sasref.com.sa', port=443"
+    "no-ats",
+    ""
   ],
   [
     "jazan_city",
