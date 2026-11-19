@@ -171,8 +171,8 @@
   ],
   [
     "bindawood",
-    "unreachable",
-    "ConnectTimeout: HTTPSConnectionPool(host='www.bindawoodholding.com', p"
+    "no-ats",
+    ""
   ],
   [
     "jarir",
@@ -257,7 +257,7 @@
   [
     "elm",
     "unreachable",
-    "SSLError: HTTPSConnectionPool(host='elm.sa', port=443): Max retries ex"
+    "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote en"
   ],
   [
     "tahakom",
@@ -281,8 +281,8 @@
   ],
   [
     "sasref",
-    "unreachable",
-    "ConnectTimeout: HTTPSConnectionPool(host='www.sasref.com.sa', port=443"
+    "no-ats",
+    ""
   ],
   [
     "jazan_city",
