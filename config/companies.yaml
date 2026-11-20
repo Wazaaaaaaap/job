@@ -362,8 +362,7 @@ discover:
   name_ar: علم
   careers_url: https://elm.sa/en/careers
   sector: tech
-  last_error: 'ConnectionError: (''Connection aborted.'', RemoteDisconnected(''Remote
-    end closed connection without response''))'
+  last_error: no known ATS fingerprint on careers page
 - id: tahakom
   name: Tahakom
   name_ar: تحكم
