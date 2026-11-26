@@ -1,8 +1,8 @@
 [
   [
     "aramco",
-    "unreachable",
-    "ReadTimeout: HTTPSConnectionPool(host='www.aramco.com', port=443): Rea"
+    "no-ats",
+    ""
   ],
   [
     "sabic",
