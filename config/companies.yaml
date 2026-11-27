@@ -38,7 +38,8 @@ discover:
   name_ar: أرامكو السعودية
   careers_url: https://www.aramco.com/en/careers/apply
   sector: energy
-  last_error: no known ATS fingerprint on careers page
+  last_error: 'ReadTimeout: HTTPSConnectionPool(host=''www.aramco.com'', port=443):
+    Read timed out. (read timeout=30)'
 - id: sabic
   name: SABIC
   name_ar: سابك
